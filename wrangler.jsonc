@@ -1,0 +1,13 @@
+{
+  // Cloudflare Worker serving the generated static site.
+  // Docs: https://developers.cloudflare.com/workers/static-assets/
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "camodevops",
+  "compatibility_date": "2026-06-16",
+  "assets": {
+    "directory": "./output",
+    // Serve pretty URLs (/architecture -> architecture.html) and a 404 page.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

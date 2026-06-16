@@ -1,0 +1,14 @@
+{
+  "name": "camodevops",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Camodevops website — static site deployed to Cloudflare Workers",
+  "scripts": {
+    "build": "python3 generate_site.py",
+    "dev": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.95.0"
+  }
+}

@@ -6,7 +6,7 @@ Outputs a structured directory of HTML files with shared navigation and footer.
 
 import os
 
-OUTPUT_DIR = "/workspace/camodevopswebsite/output"
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Shared Head and Navigation
