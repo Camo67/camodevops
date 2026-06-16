@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Camodevops</title>
+    <link rel="icon" type="image/x-icon" href="favico.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                darkMode: true,
+                background: '#18181b',
+                primaryColor: '#14b8a6',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#2dd4bf',
+                lineColor: '#64748b',
+                secondaryColor: '#27272a',
+                tertiaryColor: '#09090b'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 60
+            }
+        });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        camo: {
+                            950: '#09090b',
+                            900: '#18181b',
+                            800: '#27272a',
+                            accent: '#14b8a6',
+                            accentHover: '#2dd4bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #09090b; color: #e4e4e7; }
+        .glow-text { text-shadow: 0 0 20px rgba(20, 184, 166, 0.3); }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased grid-bg flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="border-b border-camo-800 bg-camo-950/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Camodevops Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                    <span class="font-mono font-bold text-white tracking-wider hidden sm:inline">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                    <a href="index.html" class="nav-link hover:text-camo-accent transition-colors text-camo-accent">Home</a>
+                    <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors ">Platform</a>
+                    <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors ">Architecture</a>
+                    <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors ">Sovereignty</a>
+                    <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all ">Request Audit</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="herobg.png" alt="" class="w-full h-full object-cover opacity-40" />
+            <div class="absolute inset-0 bg-gradient-to-b from-camo-950/70 via-camo-950/85 to-camo-950"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-8">
+                <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                SOVEREIGN AI INFRASTRUCTURE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
+                <span class="text-camo-accent glow-text">95%</span> of AI projects fail to deliver a profit <span class="text-zinc-500 text-2xl md:text-3xl font-normal block mt-2 font-mono">(MIT NANDA Research)</span>
+            </h1>
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Most AI initiatives collapse under their own weight. They are rigid, overly dependent on third-party cloud APIs, and fundamentally disconnected from actual business workflows. We reject the hype. We build specific, localized, and sovereign AI capabilities that integrate seamlessly into your existing infrastructure.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="platform.html" class="px-8 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
+                    Explore the Camodevops Engine
+                </a>
+                <a href="audit.html" class="px-8 py-4 bg-transparent border border-zinc-700 hover:border-camo-accent text-zinc-300 hover:text-camo-accent font-semibold rounded-md transition-all duration-300">
+                    Request Discovery Audit
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CamoFlow OS Highlight -->
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">CamoFlow OS</h2>
+                <p class="text-xl text-zinc-400 max-w-3xl mx-auto">AI that lives on your machine — not someone else's cloud.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-camo-accent mb-4 font-mono">The Problem</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Cloud bills spiral in foreign currency.</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Client data shipped to overseas servers (POPIA risk).</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Vendor lock-in: their prices, their outages, their terms.</li>
+                    </ul>
+                </div>
+                <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-camo-accent mb-4 font-mono">The Camodevops Shift</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Local-first: Your data never leaves the building.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Near-zero cost per query. No per-token bills.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> You own the box. Runs offline. Swap anything.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <a href="platform.html" class="inline-block px-8 py-3 border border-camo-accent text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">View Full Platform Details →</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-camo-800 bg-camo-950 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Camodevops Logo" class="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                <div class="flex flex-col">
+                    <span class="font-mono font-bold text-white tracking-wider text-sm">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                    <span class="text-xs text-zinc-500 font-mono">Functional Synergy. Strategic Navigation.</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-zinc-500 font-mono text-center md:text-right">
+                <a href="https://t.me/Camodevopsbot" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-camo-accent transition-colors group">
+                    <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    <span>@Camodevopsbot</span>
+                </a>
+                <a href="privacy.html" class="hover:text-camo-accent transition-colors">Privacy (POPIA)</a>
+                <a href="terms.html" class="hover:text-camo-accent transition-colors">Terms (ECTA)</a>
+                <span>&copy; 2026 Camodevops. All systems operational.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

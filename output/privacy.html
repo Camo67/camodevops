@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Camodevops</title>
+    <link rel="icon" type="image/x-icon" href="favico.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                darkMode: true,
+                background: '#18181b',
+                primaryColor: '#14b8a6',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#2dd4bf',
+                lineColor: '#64748b',
+                secondaryColor: '#27272a',
+                tertiaryColor: '#09090b'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 60
+            }
+        });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        camo: {
+                            950: '#09090b',
+                            900: '#18181b',
+                            800: '#27272a',
+                            accent: '#14b8a6',
+                            accentHover: '#2dd4bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #09090b; color: #e4e4e7; }
+        .glow-text { text-shadow: 0 0 20px rgba(20, 184, 166, 0.3); }
+        .grid-bg {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased grid-bg flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="border-b border-camo-800 bg-camo-950/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Camodevops Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                    <span class="font-mono font-bold text-white tracking-wider hidden sm:inline">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                    <a href="index.html" class="nav-link hover:text-camo-accent transition-colors ">Home</a>
+                    <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors ">Platform</a>
+                    <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors ">Architecture</a>
+                    <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors ">Sovereignty</a>
+                    <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all ">Request Audit</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-white mb-2 font-mono">Privacy Policy</h1>
+            <p class="text-camo-accent text-sm font-mono mb-8">Compliance: Protection of Personal Information Act (POPIA), No. 4 of 2013</p>
+            <div class="space-y-6 text-zinc-400 text-sm leading-relaxed">
+                <div><h3 class="text-white font-semibold mb-2">1. Introduction & Overview</h3><p>Camodevops is committed to protecting the privacy and data sovereignty of our clients. This Privacy Policy outlines how we process personal information in strict compliance with POPIA.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">2. The Information We Collect</h3><p>We collect only the minimum required: Contact Information (name, business email), Technical Infrastructure Metadata (provided voluntarily during diagnostics), and Digital Identifiers (IP addresses, processed lawfully).</p></div>
+                <div><h3 class="text-white font-semibold mb-2">3. Purpose of Processing</h3><p>To respond to inquiries, schedule discovery audits, deliver customized local AI tools, and ensure the security of our digital platforms.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">4. Our Sovereign Data Philosophy</h3><ul class="list-disc pl-5 mt-2 space-y-1"><li><span class="text-camo-accent">Local Processing First:</span> We prioritize configuring AI tools locally on client infrastructure.</li><li><span class="text-camo-accent">Zero Third-Party Leaks:</span> We do not sell, rent, or lease your data, nor use it to train public models.</li><li><span class="text-camo-accent">Cross-Border Controls:</span> Any cross-border transfer complies fully with Section 72 of POPIA.</li></ul></div>
+                <div><h3 class="text-white font-semibold mb-2">5. Information Security Safeguards</h3><p>In alignment with Section 19 of POPIA, we implement robust technical measures including encrypted communications, local repository isolation, and access-controlled deployment pipelines.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">6. Your Data Rights</h3><p>Under POPIA, you retain the right to confirm what personal information we hold, request correction or destruction of inaccurate data, and object to processing for valid reasons.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">7. Contact Our Information Officer</h3><p>For any queries, contact the Camodevops Information Officer at: <a href="mailto:legal@camodevops.co.za" class="text-camo-accent hover:underline">legal@camodevops.co.za</a>.</p></div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-camo-800 bg-camo-950 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Camodevops Logo" class="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                <div class="flex flex-col">
+                    <span class="font-mono font-bold text-white tracking-wider text-sm">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                    <span class="text-xs text-zinc-500 font-mono">Functional Synergy. Strategic Navigation.</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-zinc-500 font-mono text-center md:text-right">
+                <a href="https://t.me/Camodevopsbot" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-camo-accent transition-colors group">
+                    <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    <span>@Camodevopsbot</span>
+                </a>
+                <a href="privacy.html" class="hover:text-camo-accent transition-colors">Privacy (POPIA)</a>
+                <a href="terms.html" class="hover:text-camo-accent transition-colors">Terms (ECTA)</a>
+                <span>&copy; 2026 Camodevops. All systems operational.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

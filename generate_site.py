@@ -1,0 +1,550 @@
+#!/usr/bin/env python3
+"""
+Generates the multi-page Camodevops website.
+Outputs a structured directory of HTML files with shared navigation and footer.
+"""
+
+import os
+
+OUTPUT_DIR = "/workspace/camodevopswebsite/output"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# Shared Head and Navigation
+SHARED_HEAD = """<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} | Camodevops</title>
+    <link rel="icon" type="image/x-icon" href="favico.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        mermaid.initialize({{ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {{
+                darkMode: true,
+                background: '#18181b',
+                primaryColor: '#14b8a6',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#2dd4bf',
+                lineColor: '#64748b',
+                secondaryColor: '#27272a',
+                tertiaryColor: '#09090b'
+            }},
+            flowchart: {{
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 60
+            }}
+        }});
+        tailwind.config = {{
+            theme: {{
+                extend: {{
+                    fontFamily: {{
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }},
+                    colors: {{
+                        camo: {{
+                            950: '#09090b',
+                            900: '#18181b',
+                            800: '#27272a',
+                            accent: '#14b8a6',
+                            accentHover: '#2dd4bf',
+                        }}
+                    }}
+                }}
+            }}
+        }}
+    </script>
+    <style>
+        body {{ background-color: #09090b; color: #e4e4e7; }}
+        .glow-text {{ text-shadow: 0 0 20px rgba(20, 184, 166, 0.3); }}
+        .grid-bg {{
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }}
+    </style>
+</head>
+<body class="font-sans antialiased grid-bg flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="border-b border-camo-800 bg-camo-950/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="logo.png" alt="Camodevops Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                    <span class="font-mono font-bold text-white tracking-wider hidden sm:inline">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                    <a href="index.html" class="nav-link hover:text-camo-accent transition-colors {nav_home}">Home</a>
+                    <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors {nav_platform}">Platform</a>
+                    <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors {nav_architecture}">Architecture</a>
+                    <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors {nav_sovereignty}">Sovereignty</a>
+                    <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all {nav_audit}">Request Audit</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+"""
+
+# Shared Footer
+SHARED_FOOTER = """    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-camo-800 bg-camo-950 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Camodevops Logo" class="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
+                <div class="flex flex-col">
+                    <span class="font-mono font-bold text-white tracking-wider text-sm">CAMO <span class="text-camo-accent">.DEVOPS.ONLINE</span></span>
+                    <span class="text-xs text-zinc-500 font-mono">Functional Synergy. Strategic Navigation.</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-zinc-500 font-mono text-center md:text-right">
+                <a href="https://t.me/Camodevopsbot" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-camo-accent transition-colors group">
+                    <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    <span>@Camodevopsbot</span>
+                </a>
+                <a href="privacy.html" class="hover:text-camo-accent transition-colors">Privacy (POPIA)</a>
+                <a href="terms.html" class="hover:text-camo-accent transition-colors">Terms (ECTA)</a>
+                <span>&copy; 2026 Camodevops. All systems operational.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
+"""
+
+# Page Contents
+PAGES = {
+    "index.html": {
+        "title": "Home",
+        "nav": {"nav_home": "text-camo-accent"},
+        "content": """
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="herobg.png" alt="" class="w-full h-full object-cover opacity-40" />
+            <div class="absolute inset-0 bg-gradient-to-b from-camo-950/70 via-camo-950/85 to-camo-950"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-8">
+                <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                SOVEREIGN AI INFRASTRUCTURE
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
+                <span class="text-camo-accent glow-text">95%</span> of AI projects fail to deliver a profit <span class="text-zinc-500 text-2xl md:text-3xl font-normal block mt-2 font-mono">(MIT NANDA Research)</span>
+            </h1>
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Most AI initiatives collapse under their own weight. They are rigid, overly dependent on third-party cloud APIs, and fundamentally disconnected from actual business workflows. We reject the hype. We build specific, localized, and sovereign AI capabilities that integrate seamlessly into your existing infrastructure.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="platform.html" class="px-8 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
+                    Explore the Camodevops Engine
+                </a>
+                <a href="audit.html" class="px-8 py-4 bg-transparent border border-zinc-700 hover:border-camo-accent text-zinc-300 hover:text-camo-accent font-semibold rounded-md transition-all duration-300">
+                    Request Discovery Audit
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CamoFlow OS Highlight -->
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">CamoFlow OS</h2>
+                <p class="text-xl text-zinc-400 max-w-3xl mx-auto">AI that lives on your machine — not someone else's cloud.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-camo-accent mb-4 font-mono">The Problem</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Cloud bills spiral in foreign currency.</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Client data shipped to overseas servers (POPIA risk).</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✕</span> Vendor lock-in: their prices, their outages, their terms.</li>
+                    </ul>
+                </div>
+                <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-camo-accent mb-4 font-mono">The Camodevops Shift</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Local-first: Your data never leaves the building.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Near-zero cost per query. No per-token bills.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> You own the box. Runs offline. Swap anything.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <a href="platform.html" class="inline-block px-8 py-3 border border-camo-accent text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">View Full Platform Details →</a>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "platform.html": {
+        "title": "Platform & Capabilities",
+        "nav": {"nav_platform": "text-camo-accent"},
+        "content": """
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Core Capabilities</h1>
+                <p class="text-zinc-400 max-w-2xl mx-auto">We do not sell generic software. We engineer targeted platform capabilities designed for SME operational reality.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="group scroll-reveal opacity-0 translate-y-8 p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <h3 class="text-xl font-bold text-white font-mono mb-4">Local Multi-Agent Orchestration</h3>
+                    <p class="text-sm text-zinc-400 mb-3"><span class="text-red-400 font-semibold">Problem:</span> Cloud-based agent frameworks leak proprietary context and create severe vendor lock-in.</p>
+                    <p class="text-sm text-zinc-300 mb-4"><span class="text-camo-accent font-semibold">Execution:</span> Lightweight, localized agent swarms powered by open-weight models, orchestrated via secure, on-premise message brokers.</p>
+                    <div class="pt-3 border-t border-camo-800">
+                        <span class="inline-flex items-center gap-2 text-camo-accent font-mono text-xs bg-camo-accent/10 px-2 py-1 rounded">40% reduction in inference latency | Zero external data egress</span>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group scroll-reveal opacity-0 translate-y-8 p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <h3 class="text-xl font-bold text-white font-mono mb-4">Sovereign RAG Pipelines</h3>
+                    <p class="text-sm text-zinc-400 mb-3"><span class="text-red-400 font-semibold">Problem:</span> Off-the-shelf AI tools index sensitive SME data into third-party vector databases, bypassing compliance mandates.</p>
+                    <p class="text-sm text-zinc-300 mb-4"><span class="text-camo-accent font-semibold">Execution:</span> Isolated, on-premise Retrieval-Augmented Generation pipelines featuring strict RBAC and locally hosted embedding models.</p>
+                    <div class="pt-3 border-t border-camo-800">
+                        <span class="inline-flex items-center gap-2 text-camo-accent font-mono text-xs bg-camo-accent/10 px-2 py-1 rounded">100% data residency compliance | Sub-second retrieval</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group scroll-reveal opacity-0 translate-y-8 p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <h3 class="text-xl font-bold text-white font-mono mb-4">Automated Workflow Integration</h3>
+                    <p class="text-sm text-zinc-400 mb-3"><span class="text-red-400 font-semibold">Problem:</span> AI tools operate in silos, forcing teams into manual data transfer and fracturing existing CI/CD or ERP workflows.</p>
+                    <p class="text-sm text-zinc-300 mb-4"><span class="text-camo-accent font-semibold">Execution:</span> Custom, Python-based middleware and API hooks that embed AI decision nodes directly into established operational pipelines.</p>
+                    <div class="pt-3 border-t border-camo-800">
+                        <span class="inline-flex items-center gap-2 text-camo-accent font-mono text-xs bg-camo-accent/10 px-2 py-1 rounded">Eliminates 15+ hours of manual weekly data reconciliation</span>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="group scroll-reveal opacity-0 translate-y-8 p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:scale-[1.02] transition-all duration-500 ease-out">
+                    <h3 class="text-xl font-bold text-white font-mono mb-4">IaC AI Deployment</h3>
+                    <p class="text-sm text-zinc-400 mb-3"><span class="text-red-400 font-semibold">Problem:</span> AI model deployment is often treated as a fragile, one-off script rather than a reproducible infrastructure component.</p>
+                    <p class="text-sm text-zinc-300 mb-4"><span class="text-camo-accent font-semibold">Execution:</span> Every AI service is packaged as a hardened Docker container, accompanied by Terraform or Ansible playbooks for deterministic deployment.</p>
+                    <div class="pt-3 border-t border-camo-800">
+                        <span class="inline-flex items-center gap-2 text-camo-accent font-mono text-xs bg-camo-accent/10 px-2 py-1 rounded">Deployment time reduced from days to minutes | Zero config drift</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packages -->
+            <div class="mt-24 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="text-3xl font-bold text-white text-center mb-10 font-mono">Engagement Models</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 flex flex-col">
+                        <h4 class="text-xl font-bold text-white mb-2">Augmented</h4>
+                        <p class="text-3xl font-bold text-camo-accent mb-4">R2,500 – R4,500 <span class="text-sm text-zinc-500 font-normal">once-off</span></p>
+                        <p class="text-zinc-400 text-sm mb-6 flex-grow">One focused AI feature or automation, built and deployed directly on your existing stack.</p>
+                        <a href="audit.html" class="block text-center px-4 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">Request Scope</a>
+                    </div>
+                    <div class="relative p-8 rounded-xl bg-camo-900 border-2 border-camo-accent flex flex-col shadow-[0_0_30px_rgba(20,184,166,0.1)]">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-camo-accent text-camo-950 text-xs font-bold rounded-full">POPULAR</div>
+                        <h4 class="text-xl font-bold text-white mb-2">Moat</h4>
+                        <p class="text-3xl font-bold text-camo-accent mb-4">R3,000 – R8,000 <span class="text-sm text-zinc-500 font-normal">/ month</span></p>
+                        <p class="text-zinc-400 text-sm mb-6 flex-grow">A managed CamoFlow engine that continuously evolves, adapts, and scales with your business.</p>
+                        <a href="audit.html" class="block text-center px-4 py-3 bg-camo-accent text-camo-950 rounded hover:bg-camo-accentHover transition-colors font-bold">Start Managed</a>
+                    </div>
+                    <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 flex flex-col">
+                        <h4 class="text-xl font-bold text-white mb-2">Ownership</h4>
+                        <p class="text-3xl font-bold text-camo-accent mb-4">R15,000 – R35,000 <span class="text-sm text-zinc-500 font-normal">once-off</span></p>
+                        <p class="text-zinc-400 text-sm mb-6 flex-grow">Your own CamoFlow OS, fully built, configured, and handed over. You own it outright.</p>
+                        <a href="audit.html" class="block text-center px-4 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">Discuss Build</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "architecture.html": {
+        "title": "Architecture & Orchestration",
+        "nav": {"nav_architecture": "text-camo-accent"},
+        "content": """
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Architecture & Orchestration</h1>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Fluent, deterministic workflows designed for zero-trust environments and local-first execution.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <!-- Tool Functionality Blueprint -->
+                <div class="bg-camo-900/50 border border-camo-800 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="text-lg font-bold text-camo-accent font-mono mb-6 flex items-center gap-2">Tool Functionality Flow</h3>
+                    <div class="mermaid flex justify-center">
+graph TD
+    classDef default fill:#18181b,stroke:#3f3f46,stroke-width:1px,color:#e4e4e7,font-family:'Inter',sans-serif;
+    classDef trigger fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef core fill:#09090b,stroke:#2dd4bf,stroke-width:2px,color:#f4f4f5;
+    classDef tool fill:#27272a,stroke:#14b8a6,stroke-width:1px,color:#5eead4;
+    classDef output fill:#115e59,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    USER([User Request / Trigger]) :::trigger
+    ORCH[Core Engine / Router] :::core
+    subgraph Tool_Ecosystem [" Tool & Functionality Layer "]
+        style Tool_Ecosystem fill:#09090b,stroke:#27272a,stroke-width:1px,color:#a1a1aa,rx:12,ry:12
+        T1[API Integration Tool] :::tool
+        T2[Data Processing Engine] :::tool
+        T3[Local AI Model Layer] :::tool
+    end
+    DELIVERY([Polished Front-End Output]) :::output
+    USER --> |Structured Input| ORCH
+    ORCH <--> |Orchestrate| T1
+    ORCH <--> |Transform| T2
+    ORCH <--> |Analyze| T3
+    ORCH --> |Stream Results| DELIVERY
+    linkStyle default stroke:#52525b,stroke-width:2px;
+                    </div>
+                </div>
+
+                <!-- Business Illustration Blueprint -->
+                <div class="bg-camo-900/50 border border-camo-800 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="text-lg font-bold text-camo-accent font-mono mb-6 flex items-center gap-2">Business Architecture & Value</h3>
+                    <div class="mermaid flex justify-center">
+graph LR
+    classDef default fill:#18181b,stroke:#3f3f46,stroke-width:1px,color:#e4e4e7,font-family:'Inter',sans-serif;
+    classDef vision fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef pillar fill:#27272a,stroke:#52525b,stroke-width:1px,color:#d4d4d8;
+    classDef value fill:#115e59,stroke:#14b8a6,stroke-width:1px,color:#5eead4;
+    BIZ([Business Core & Vision]) :::vision
+    subgraph Pillars [" Operational Strategy "]
+        style Pillars fill:#09090b,stroke:#27272a,stroke-width:1px,color:#a1a1aa,rx:12,ry:12
+        P1[Digital Skills Training] :::pillar
+        P2[Sustainable Ecosystems] :::pillar
+        P3[Local Infrastructure] :::pillar
+    end
+    V1[Community Impact] :::value
+    V2[Sovereign Technology] :::value
+    BIZ --> Pillars
+    P1 --> V1
+    P2 --> V1
+    P3 --> V2
+    linkStyle default stroke:#52525b,stroke-width:2px;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "sovereignty.html": {
+        "title": "Data Sovereignty",
+        "nav": {"nav_sovereignty": "text-camo-accent"},
+        "content": """
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">The Sovereign Stack</h1>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Why localization matters for your business.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div>
+                    <p class="text-zinc-400 mb-6 leading-relaxed text-lg">
+                        Generic, cloud-hosted AI treats your data as a byproduct. For an SME, your data is your competitive advantage and your primary liability. 
+                    </p>
+                    <p class="text-white font-semibold mb-8 border-l-4 border-camo-accent pl-4 text-xl">
+                        Your data never leaves your perimeter unless you explicitly engineer it to.
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-camo-accent/10 flex items-center justify-center text-camo-accent flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-lg">True Data Residency</h4>
+                                <p class="text-zinc-400">Models and vector stores run on your hardware or your chosen private cloud.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-camo-accent/10 flex items-center justify-center text-camo-accent flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-lg">No Hidden Telemetry</h4>
+                                <p class="text-zinc-400">We strip out phone-home mechanisms and ensure complete opacity from external model providers.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-camo-accent/10 flex items-center justify-center text-camo-accent flex-shrink-0 mt-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-lg">Deterministic Behavior</h4>
+                                <p class="text-zinc-400">Local execution means predictable performance, predictable costs, and no surprise API rate limits.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-camo-accent/20 rounded-xl blur-2xl opacity-30"></div>
+                    <div class="relative bg-camo-900 border border-camo-800 rounded-xl p-8 font-mono text-sm">
+                        <div class="flex items-center gap-2 mb-4 border-b border-camo-800 pb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-2 text-zinc-500">sovereign_deploy.sh</span>
+                        </div>
+                        <div class="space-y-2 text-zinc-300">
+                            <p><span class="text-camo-accent">$</span> camodevops init --local</p>
+                            <p class="text-zinc-500"># Initializing sovereign environment...</p>
+                            <p><span class="text-green-400">✓</span> Pulling local embedding model (Mistral-7B)</p>
+                            <p><span class="text-green-400">✓</span> Configuring local vector store (ChromaDB)</p>
+                            <p><span class="text-green-400">✓</span> Establishing air-gapped agent network</p>
+                            <p><span class="text-green-400">✓</span> Verifying zero egress policies</p>
+                            <p class="mt-4 text-camo-accent">Deployment successful. Data residency: 100%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="mt-24 border-t border-camo-800 pt-16">
+                <h2 class="text-3xl font-bold text-white text-center mb-12">Core Integration Philosophies</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                    <div class="p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-lg bg-camo-accent/10 flex items-center justify-center text-camo-accent">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Python-Native</h3>
+                        <p class="text-sm text-zinc-400">All custom logic and orchestration scripts are written in clean, well-documented Python for easy handoff.</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-lg bg-camo-accent/10 flex items-center justify-center text-camo-accent">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Docker-Ready</h3>
+                        <p class="text-sm text-zinc-400">Every component is delivered as a self-contained, versioned container. If it runs here, it runs there.</p>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-lg bg-camo-accent/10 flex items-center justify-center text-camo-accent">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Local Data First</h3>
+                        <p class="text-sm text-zinc-400">We design systems to read directly from your existing local databases, eliminating risky cloud sync.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "audit.html": {
+        "title": "Request Discovery Audit",
+        "nav": {"nav_audit": "text-camo-accent"},
+        "content": """
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Do not book a sales call.</h1>
+            <p class="text-xl text-zinc-400 mb-8 max-w-2xl mx-auto">
+                We do not do pitch decks. If you are evaluating AI for your operations, you need a technical assessment, not a marketing presentation. 
+            </p>
+            <div class="bg-camo-900/50 border border-camo-800 rounded-xl p-8 md:p-12 text-left mb-10">
+                <h3 class="text-2xl font-bold text-camo-accent mb-4 font-mono">The Discovery Audit</h3>
+                <p class="text-zinc-300 mb-6 leading-relaxed">
+                    A focused, 60-minute technical review of your current infrastructure, data workflows, and automation bottlenecks. 
+                </p>
+                <ul class="space-y-3 text-zinc-400 mb-8">
+                    <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">→</span> We identify exactly where localized AI can be integrated.</li>
+                    <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">→</span> We outline the technical prerequisites for your stack.</li>
+                    <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">→</span> We determine if Camodevops is the right fit for your operational reality.</li>
+                </ul>
+                <a href="https://t.me/Camodevopsbot" target="_blank" rel="noopener noreferrer" class="inline-block w-full md:w-auto text-center px-10 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
+                    Initiate Audit via Telegram
+                </a>
+                <p class="mt-6 text-sm text-zinc-500 font-mono">No commitment required. Technical prerequisites will be sent upon booking.</p>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "privacy.html": {
+        "title": "Privacy Policy",
+        "nav": {},
+        "content": """
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-white mb-2 font-mono">Privacy Policy</h1>
+            <p class="text-camo-accent text-sm font-mono mb-8">Compliance: Protection of Personal Information Act (POPIA), No. 4 of 2013</p>
+            <div class="space-y-6 text-zinc-400 text-sm leading-relaxed">
+                <div><h3 class="text-white font-semibold mb-2">1. Introduction & Overview</h3><p>Camodevops is committed to protecting the privacy and data sovereignty of our clients. This Privacy Policy outlines how we process personal information in strict compliance with POPIA.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">2. The Information We Collect</h3><p>We collect only the minimum required: Contact Information (name, business email), Technical Infrastructure Metadata (provided voluntarily during diagnostics), and Digital Identifiers (IP addresses, processed lawfully).</p></div>
+                <div><h3 class="text-white font-semibold mb-2">3. Purpose of Processing</h3><p>To respond to inquiries, schedule discovery audits, deliver customized local AI tools, and ensure the security of our digital platforms.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">4. Our Sovereign Data Philosophy</h3><ul class="list-disc pl-5 mt-2 space-y-1"><li><span class="text-camo-accent">Local Processing First:</span> We prioritize configuring AI tools locally on client infrastructure.</li><li><span class="text-camo-accent">Zero Third-Party Leaks:</span> We do not sell, rent, or lease your data, nor use it to train public models.</li><li><span class="text-camo-accent">Cross-Border Controls:</span> Any cross-border transfer complies fully with Section 72 of POPIA.</li></ul></div>
+                <div><h3 class="text-white font-semibold mb-2">5. Information Security Safeguards</h3><p>In alignment with Section 19 of POPIA, we implement robust technical measures including encrypted communications, local repository isolation, and access-controlled deployment pipelines.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">6. Your Data Rights</h3><p>Under POPIA, you retain the right to confirm what personal information we hold, request correction or destruction of inaccurate data, and object to processing for valid reasons.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">7. Contact Our Information Officer</h3><p>For any queries, contact the Camodevops Information Officer at: <a href="mailto:legal@camodevops.co.za" class="text-camo-accent hover:underline">legal@camodevops.co.za</a>.</p></div>
+            </div>
+        </div>
+    </section>
+""",
+    },
+    "terms.html": {
+        "title": "Terms & Conditions",
+        "nav": {},
+        "content": """
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-white mb-2 font-mono">Terms & Conditions</h1>
+            <p class="text-camo-accent text-sm font-mono mb-8">Governed by the laws of the Republic of South Africa & Electronic Communications and Transactions Act (ECTA)</p>
+            <div class="space-y-6 text-zinc-400 text-sm leading-relaxed">
+                <div><h3 class="text-white font-semibold mb-2">1. Acceptance of Terms</h3><p>By accessing camodevops.co.za, you agree to be bound by these Terms and Conditions and all applicable laws of the Republic of South Africa.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">2. Nature of Services & Disclaimers</h3><p>This website serves as a technical capability catalog. Content does not constitute binding technical advice. All information is provided "as is" without express or implied warranties regarding system fit.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">3. Intellectual Property Rights</h3><p>All content, architecture diagrams, code frameworks, and the name Camodevops are the exclusive intellectual property of Cameron De Vries / Camodevops, protected under South African and international law. You may not scrape, copy, or commercially distribute our content without explicit written authorization.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">4. Acceptable Use Policy</h3><p>You strictly agree not to deploy automated bots, scrapers, or malicious scripts; attempt to bypass security boundaries; or submit fraudulent information via our forms.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">5. Limitation of Liability</h3><p>To the maximum extent permitted by the ECTA, Camodevops will not be held liable for any direct, indirect, incidental, or consequential damages resulting from your use of this website or its technical materials.</p></div>
+                <div><h3 class="text-white font-semibold mb-2">6. Governing Law</h3><p>These terms are governed by the laws of the Republic of South Africa. Any disputes will be subject to the exclusive jurisdiction of the courts located in Cape Town, South Africa.</p></div>
+            </div>
+        </div>
+    </section>
+""",
+    },
+}
+
+# Generate Pages
+for filename, page_data in PAGES.items():
+    nav_classes = {
+        "nav_home": "",
+        "nav_platform": "",
+        "nav_architecture": "",
+        "nav_sovereignty": "",
+        "nav_audit": "",
+    }
+    nav_classes.update(page_data["nav"])
+
+    html = SHARED_HEAD.format(title=page_data["title"], **nav_classes)
+    html += page_data["content"]
+    html += SHARED_FOOTER
+
+    with open(os.path.join(OUTPUT_DIR, filename), "w", encoding="utf-8") as f:
+        f.write(html)
+
+print(f"Successfully generated multi-page website in: {OUTPUT_DIR}")
