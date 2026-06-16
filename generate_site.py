@@ -306,15 +306,15 @@ graph TD
     classDef core fill:#09090b,stroke:#2dd4bf,stroke-width:2px,color:#f4f4f5;
     classDef tool fill:#27272a,stroke:#14b8a6,stroke-width:1px,color:#5eead4;
     classDef output fill:#115e59,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
-    USER([User Request / Trigger]) :::trigger
-    ORCH[Core Engine / Router] :::core
-    subgraph Tool_Ecosystem [" Tool & Functionality Layer "]
+    USER(["User Request / Trigger"]):::trigger
+    ORCH["Core Engine / Router"]:::core
+    subgraph Tool_Ecosystem [" Tool and Functionality Layer "]
         style Tool_Ecosystem fill:#09090b,stroke:#27272a,stroke-width:1px,color:#a1a1aa,rx:12,ry:12
-        T1[API Integration Tool] :::tool
-        T2[Data Processing Engine] :::tool
-        T3[Local AI Model Layer] :::tool
+        T1[API Integration Tool]:::tool
+        T2[Data Processing Engine]:::tool
+        T3[Local AI Model Layer]:::tool
     end
-    DELIVERY([Polished Front-End Output]) :::output
+    DELIVERY(["Polished Front-End Output"]):::output
     USER --> |Structured Input| ORCH
     ORCH <--> |Orchestrate| T1
     ORCH <--> |Transform| T2
@@ -333,20 +333,105 @@ graph LR
     classDef vision fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
     classDef pillar fill:#27272a,stroke:#52525b,stroke-width:1px,color:#d4d4d8;
     classDef value fill:#115e59,stroke:#14b8a6,stroke-width:1px,color:#5eead4;
-    BIZ([Business Core & Vision]) :::vision
+    BIZ(["Business Core & Vision"]):::vision
     subgraph Pillars [" Operational Strategy "]
         style Pillars fill:#09090b,stroke:#27272a,stroke-width:1px,color:#a1a1aa,rx:12,ry:12
-        P1[Digital Skills Training] :::pillar
-        P2[Sustainable Ecosystems] :::pillar
-        P3[Local Infrastructure] :::pillar
+        P1[Digital Skills Training]:::pillar
+        P2[Sustainable Ecosystems]:::pillar
+        P3[Local Infrastructure]:::pillar
     end
-    V1[Community Impact] :::value
-    V2[Sovereign Technology] :::value
+    V1[Community Impact]:::value
+    V2[Sovereign Technology]:::value
     BIZ --> Pillars
     P1 --> V1
     P2 --> V1
     P3 --> V2
     linkStyle default stroke:#52525b,stroke-width:2px;
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== REAL ClientOS architecture & orchestration ===== -->
+            <div class="mt-16 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-3">CamoDevOps Enterprise OS &mdash; Live System</h2>
+                    <p class="text-zinc-400 max-w-3xl mx-auto">The real ClientOS: one Obsidian vault that is also an automation repo. CSV and chat inputs are ingested into a typed note graph; the Hermes Gateway dispatches the Flow Squad to read, act, and write back &mdash; streamed to a live ops cockpit.</p>
+                </div>
+
+                <!-- Real System Architecture -->
+                <div class="bg-camo-900/50 border border-camo-800 rounded-xl p-6 overflow-x-auto mb-8">
+                    <h3 class="text-lg font-bold text-camo-accent font-mono mb-6 flex items-center gap-2">Real System Architecture</h3>
+                    <div class="mermaid flex justify-center">
+graph TD
+    classDef default fill:#18181b,stroke:#3f3f46,stroke-width:1px,color:#e4e4e7,font-family:'Inter',sans-serif;
+    classDef input fill:#0f766e,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef pipe fill:#27272a,stroke:#14b8a6,stroke-width:1px,color:#5eead4;
+    classDef brain fill:#1e1b4b,stroke:#c084fc,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef ops fill:#115e59,stroke:#14b8a6,stroke-width:2px,color:#ffffff,font-weight:bold;
+
+    CSV([CSV / data drops]):::input
+    TG([Telegram bot]):::input
+    APIIN([API server 127.0.0.1:8642]):::input
+
+    BIN[99_Ingestion_Bin]:::pipe
+    ING["ingest_csv.py<br/>systemd timer + flock"]:::pipe
+
+    subgraph VAULT [" CamoDevOps Enterprise OS &mdash; single Obsidian vault "]
+        HR[01 People Ops]
+        FIN[02 Finance]
+        SALES[03 Marketing and Sales]
+        MAP["04 Map Board · geo pins"]
+        TASKS[05 Tasks]
+    end
+
+    HERMES["Hermes Gateway<br/>cron 60s · kanban 60s · sessions"]:::brain
+    SQUAD["Flow Squad<br/>Goku · Graham · Sophia<br/>Letitia · Alicia · Coco"]:::brain
+
+    JOBS["_ops/jobs pulses"]:::ops
+    FEED[agent_thinking feed]:::ops
+    DASH(["Obsidian dashboards<br/>Dataview · auto-refresh ~2s"]):::ops
+
+    CSV --> BIN
+    BIN --> ING
+    ING -->|route by type| HR
+    ING --> FIN
+    ING --> SALES
+    ING --> MAP
+    TG --> HERMES
+    APIIN --> HERMES
+    HERMES --> SQUAD
+    SQUAD -->|read + write notes| VAULT
+    SQUAD --> JOBS
+    SQUAD --> FEED
+    JOBS --> DASH
+    FEED --> DASH
+    VAULT --> DASH
+    linkStyle default stroke:#52525b,stroke-width:2px;
+                    </div>
+                </div>
+
+                <!-- Real Orchestration Flow -->
+                <div class="bg-camo-900/50 border border-camo-800 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="text-lg font-bold text-camo-accent font-mono mb-6 flex items-center gap-2">Real Orchestration Flow</h3>
+                    <div class="mermaid flex justify-center">
+sequenceDiagram
+    autonumber
+    participant T as Trigger
+    participant G as Hermes Gateway
+    participant K as Kanban dispatcher
+    participant A as Flow Squad agent
+    participant P as Tool plugins
+    participant V as Vault notes
+    participant O as Ops cockpit
+    T->>G: Telegram msg / cron tick / CSV drop
+    G->>G: Load session (~/.hermes/sessions)
+    G->>K: Enqueue job into _ops/jobs
+    K->>A: Dispatch every 60s
+    A->>P: Call web / browser / image tools
+    P-->>A: Results (secrets redacted)
+    A->>V: Write frontmatter notes (route by type)
+    A->>O: Pulse status + agent_thinking
+    O-->>T: Reply + Live Ops dashboard (~2s refresh)
                     </div>
                 </div>
             </div>
