@@ -244,31 +244,44 @@ PAGES = {
     <!-- Credentials -->
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-10 items-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
-                        <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
-                        CREDENTIALS
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Certified in AI for small business</h2>
-                    <p class="text-zinc-400 leading-relaxed mb-6">
-                        We don't just talk about AI for SMEs &mdash; we're formally certified in it. Cameron De Vries holds the <span class="text-white font-semibold">AI Fluency for Small Businesses</span> Certificate of Completion, issued by Anthropic in partnership with PayPal.
-                    </p>
-                    <ul class="space-y-3 text-zinc-400 mb-8">
-                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Practical, business-first application of modern AI.</li>
-                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Focused on the operational reality of small and medium businesses.</li>
-                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Issued by Anthropic &amp; PayPal.</li>
-                    </ul>
-                    <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        View certificate (PDF)
-                    </a>
+            <div class="max-w-3xl mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    CREDENTIALS
                 </div>
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-camo-accent/20 rounded-xl blur-2xl opacity-30"></div>
-                    <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="relative block rounded-xl overflow-hidden border border-camo-800 hover:border-camo-accent/50 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
-                        <img src="cert-ai-fluency.png" alt="Certificate of Completion — AI Fluency for Small Businesses, awarded to Cameron De Vries by Anthropic and PayPal" class="w-full h-auto" loading="lazy" />
-                    </a>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Certified &amp; credentialed</h2>
+                <p class="text-zinc-400 leading-relaxed">
+                    We don't just talk about sovereign AI and security for SMEs &mdash; we hold formal credentials in both, issued by recognised institutions and held by Cameron De Vries.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <!-- Cert: AI Fluency -->
+                <div class="group">
+                    <div class="relative">
+                        <div class="absolute -inset-2 bg-camo-accent/20 rounded-xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="relative block rounded-xl overflow-hidden border border-camo-800 group-hover:border-camo-accent/50 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
+                            <img src="cert-ai-fluency.png" alt="Certificate of Completion — AI Fluency for Small Businesses, awarded to Cameron De Vries by Anthropic and PayPal" class="w-full h-auto" loading="lazy" />
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-white font-semibold">AI Fluency for Small Businesses</h3>
+                        <p class="text-sm text-zinc-500 mt-1">Certificate of Completion &middot; Anthropic &amp; PayPal</p>
+                        <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-2 text-sm text-camo-accent hover:text-camo-accentHover transition-colors">View PDF →</a>
+                    </div>
+                </div>
+                <!-- Cert: SANCS -->
+                <div class="group">
+                    <div class="relative">
+                        <div class="absolute -inset-2 bg-camo-accent/20 rounded-xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <a href="cert-sancs.pdf" target="_blank" rel="noopener noreferrer" class="relative block rounded-xl overflow-hidden border border-camo-800 group-hover:border-camo-accent/50 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
+                            <img src="cert-sancs.png" alt="Certificate of Participation — 3rd Edition of the Southern Africa–Netherlands Cyber Security School (SANCS), awarded to Cameron De Vries, April 2026" class="w-full h-auto" loading="lazy" />
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-white font-semibold">Southern Africa–Netherlands Cyber Security School</h3>
+                        <p class="text-sm text-zinc-500 mt-1">Certificate of Participation &middot; 3rd Edition (SANCS), April 2026 &middot; Hague Centre for Strategic Studies &amp; Stellenbosch University</p>
+                        <a href="cert-sancs.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-2 text-sm text-camo-accent hover:text-camo-accentHover transition-colors">View PDF →</a>
+                    </div>
                 </div>
             </div>
         </div>
