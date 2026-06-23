@@ -78,29 +78,31 @@ SHARED_HEAD = """<!DOCTYPE html>
                     <img src="logo.png" alt="Camodevops Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
                     <span class="font-mono font-bold text-white tracking-wider hidden sm:inline">Camo<span class="text-camo-accent">DevOps</span></span>
                 </a>
-                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-400">
                     <a href="index.html" class="nav-link hover:text-camo-accent transition-colors {nav_home}">Home</a>
                     <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors {nav_platform}">Platform</a>
                     <a href="services.html" class="nav-link hover:text-camo-accent transition-colors {nav_services}">Services</a>
                     <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors {nav_architecture}">Architecture</a>
                     <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors {nav_sovereignty}">Sovereignty</a>
+                    <a href="about.html" class="nav-link hover:text-camo-accent transition-colors {nav_about}">About</a>
                     <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all {nav_audit}">Request Audit</a>
                 </div>
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-button" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded text-zinc-400 hover:text-camo-accent hover:bg-camo-800/50 transition-colors" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+                <button id="mobile-menu-button" type="button" class="lg:hidden inline-flex items-center justify-center p-2 rounded text-zinc-400 hover:text-camo-accent hover:bg-camo-800/50 transition-colors" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                     <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
         <!-- Mobile menu panel -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-camo-800 bg-camo-950/95 backdrop-blur-md">
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-camo-800 bg-camo-950/95 backdrop-blur-md">
             <div class="px-4 py-4 space-y-1 text-sm font-medium text-zinc-300">
                 <a href="index.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_home}">Home</a>
                 <a href="platform.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_platform}">Platform</a>
                 <a href="services.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_services}">Services</a>
                 <a href="architecture.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_architecture}">Architecture</a>
                 <a href="sovereignty.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_sovereignty}">Sovereignty</a>
+                <a href="about.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors {nav_about}">About</a>
                 <a href="audit.html" class="block px-3 py-2 mt-2 text-center bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all {nav_audit}">Request Audit</a>
             </div>
         </div>
@@ -173,7 +175,7 @@ SHARED_FOOTER = """    </main>
             };
             btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
             menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
-            window.addEventListener('resize', () => { if (window.innerWidth >= 768) setOpen(false); });
+            window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setOpen(false); });
         })();
     </script>
 </body>
@@ -819,6 +821,101 @@ sequenceDiagram
     </section>
 """,
     },
+    "about.html": {
+        "title": "About",
+        "nav": {"nav_about": "text-camo-accent"},
+        "content": """
+    <!-- About Hero -->
+    <section class="relative pt-20 pb-16 overflow-hidden border-b border-camo-800">
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-camo-900/40 via-camo-950 to-camo-950"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-5 gap-12 items-center">
+                <div class="lg:col-span-3 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                        ABOUT &middot; THE ARCHITECT
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-3">The Architect</h1>
+                    <p class="text-xl md:text-2xl text-camo-accent font-semibold mb-6 glow-text">Engineering Sovereignty, Empowering the Underdog</p>
+                    <p class="text-lg text-zinc-300 leading-relaxed mb-6 border-l-4 border-camo-accent pl-4">
+                        I don't just write code; I build digital armor for the people the status quo forgot.
+                    </p>
+                    <p class="text-zinc-400 leading-relaxed">
+                        My name is <span class="text-white font-semibold">Cameron &ldquo;Camo&rdquo; De Vries</span>. I am a multi-disciplinary infrastructure architect, sound engineer, and the founder of <em>Unspoken Truths</em>.
+                    </p>
+                </div>
+                <div class="lg:col-span-2 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                    <div class="relative">
+                        <div class="absolute -inset-3 bg-camo-accent/20 rounded-2xl blur-2xl opacity-40"></div>
+                        <img src="camo-portrait.jpg" alt="Cameron &quot;Camo&quot; De Vries" class="relative w-full max-w-sm mx-auto rounded-2xl border border-camo-800 shadow-[0_0_40px_rgba(0,0,0,0.5)] object-cover" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+            <div class="mt-14 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <p class="text-2xl md:text-3xl font-bold text-white text-center max-w-4xl mx-auto leading-snug">
+                    &ldquo;If you don't own your infrastructure, <span class="text-camo-accent">you don't own your future.</span>&rdquo;
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Mission -->
+    <section class="py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-white mb-6 font-mono">The Mission: Why I Build</h2>
+            <div class="space-y-5 text-zinc-400 leading-relaxed">
+                <p>For too long, local entrepreneurs and SMEs have been held hostage by the &ldquo;subscription trap.&rdquo; Corporate giants sell them expensive, bloated software, bleeding their margins dry just to keep the lights on. They tell you that you need a fortune to automate your business.</p>
+                <p class="text-2xl font-bold text-camo-accent">That is a lie.</p>
+                <p>I specialize in building sovereign AI automation tools&mdash;custom-engineered, open-source systems that deliver enterprise-level power for next to nothing. I don't build for the boardroom; I build for the shop floor, the small business owner in Bonteheuwel, and the entrepreneur who is fighting to make their first hire. My goal is to streamline your operations so you can stop paying for tech and start investing in your people.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unspoken Truths -->
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-white mb-6 font-mono">Rooted in Reality: The <span class="text-camo-accent">Unspoken Truths</span> Advantage</h2>
+            <div class="space-y-5 text-zinc-400 leading-relaxed">
+                <p>My work is forged in the fires of real-world struggle. Through <em>Unspoken Truths</em>, I've documented the harsh realities of our economy and the strength it takes to survive when the system is rigged against you.</p>
+                <p>I know the cost of every cent. I know the grit required to build something from nothing. That lived experience is the foundation of every tool I deploy. When you partner with me, you aren't just getting an AI dev; you're getting a collaborator who understands that <span class="text-white font-semibold">efficiency is the bridge between surviving and thriving.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Arsenal -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 font-mono scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">My Arsenal</h2>
+            <div class="grid md:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Sovereign AI Orchestration</h3>
+                    <p class="text-sm text-zinc-400">I deploy local-first, agentic swarms (using tech like Ollama, DeepSeek, and Qwen) that keep your data in your hands, not on some remote server in Silicon Valley.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Infrastructure Architecture</h3>
+                    <p class="text-sm text-zinc-400">From custom Telegram bots to full-stack integration, I build robust, low-cost systems that scale as fast as your business does.</p>
+                </div>
+                <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Technical Empowerment</h3>
+                    <p class="text-sm text-zinc-400">I audit, I automate, and I train. I don't just hand over a tool&mdash;I build a machine that works for you, 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Bottom Line -->
+    <section class="py-20 bg-camo-900/30 border-t border-camo-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <h2 class="text-2xl font-bold text-camo-accent mb-4 font-mono">The Bottom Line</h2>
+            <p class="text-zinc-400 leading-relaxed mb-8 max-w-2xl mx-auto">The big players want you to stay small and keep paying. I'm here to make sure you grow big, stay sovereign, and finally get the edge you deserve.</p>
+            <p class="text-2xl md:text-3xl font-bold text-white leading-snug mb-10">I don't just build technology.<br /> <span class="text-camo-accent glow-text">I build the infrastructure of independence.</span></p>
+            <a href="audit.html" class="inline-block px-10 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
+                Request a Discovery Audit
+            </a>
+        </div>
+    </section>
+""",
+    },
     "audit.html": {
         "title": "Request Discovery Audit",
         "nav": {"nav_audit": "text-camo-accent"},
@@ -907,6 +1004,7 @@ for filename, page_data in PAGES.items():
         "nav_services": "",
         "nav_architecture": "",
         "nav_sovereignty": "",
+        "nav_about": "",
         "nav_audit": "",
     }
     nav_classes.update(page_data["nav"])

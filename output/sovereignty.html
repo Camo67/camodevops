@@ -66,29 +66,31 @@
                     <img src="logo.png" alt="Camodevops Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.3)]" />
                     <span class="font-mono font-bold text-white tracking-wider hidden sm:inline">Camo<span class="text-camo-accent">DevOps</span></span>
                 </a>
-                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-400">
                     <a href="index.html" class="nav-link hover:text-camo-accent transition-colors ">Home</a>
                     <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors ">Platform</a>
                     <a href="services.html" class="nav-link hover:text-camo-accent transition-colors ">Services</a>
                     <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors ">Architecture</a>
                     <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors text-camo-accent">Sovereignty</a>
+                    <a href="about.html" class="nav-link hover:text-camo-accent transition-colors ">About</a>
                     <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all ">Request Audit</a>
                 </div>
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-button" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded text-zinc-400 hover:text-camo-accent hover:bg-camo-800/50 transition-colors" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+                <button id="mobile-menu-button" type="button" class="lg:hidden inline-flex items-center justify-center p-2 rounded text-zinc-400 hover:text-camo-accent hover:bg-camo-800/50 transition-colors" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                     <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
         <!-- Mobile menu panel -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-camo-800 bg-camo-950/95 backdrop-blur-md">
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-camo-800 bg-camo-950/95 backdrop-blur-md">
             <div class="px-4 py-4 space-y-1 text-sm font-medium text-zinc-300">
                 <a href="index.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors ">Home</a>
                 <a href="platform.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors ">Platform</a>
                 <a href="services.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors ">Services</a>
                 <a href="architecture.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors ">Architecture</a>
                 <a href="sovereignty.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors text-camo-accent">Sovereignty</a>
+                <a href="about.html" class="block px-3 py-2 rounded hover:bg-camo-800/50 hover:text-camo-accent transition-colors ">About</a>
                 <a href="audit.html" class="block px-3 py-2 mt-2 text-center bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all ">Request Audit</a>
             </div>
         </div>
@@ -255,7 +257,7 @@
             };
             btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
             menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
-            window.addEventListener('resize', () => { if (window.innerWidth >= 768) setOpen(false); });
+            window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setOpen(false); });
         })();
     </script>
 </body>
