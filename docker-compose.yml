@@ -1,0 +1,96 @@
+# Camodevops.online — Docker Compose
+# Standalone deployment with harness integration
+
+version: '3.8'
+
+services:
+  # ═══════════════════════════════════════════════════════════════
+  # CAMODEVOPS — Static Site + Webhook Server
+  # ═══════════════════════════════════════════════════════════════
+  web:
+    build: .
+    container_name: camodevops-web
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - HARNESS_URL=http://harness:8080/webhook
+      - VERIFY_TOKEN=agentic-harness-verify
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    depends_on:
+      - harness
+    networks:
+      - camodevops
+
+  # ═══════════════════════════════════════════════════════════════
+  # AGENTIC HARNESS — AI Backend (WhatsApp + Telegram)
+  # ═══════════════════════════════════════════════════════════════
+  harness:
+    build:
+      context: /home/bertha/agentic-harness
+      dockerfile: Dockerfile
+    container_name: camodevops-harness
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - NVIDIA_NIM_API_KEY=${NVIDIA_NIM_API_KEY}
+      - DEEPINFRA_API_KEY=${DEEPINFRA_API_KEY}
+      - WHATSAPP_PHONE_NUMBER=${WHATSAPP_PHONE_NUMBER}
+      - WHATSAPP_ACCESS_TOKEN=${WHATSAPP_ACCESS_TOKEN}
+      - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+    volumes:
+      - harness-memory:/app/memory
+    networks:
+      - camodevops
+
+  # ═══════════════════════════════════════════════════════════════
+  # OLLAMA — Local LLM Engine (Optional)
+  # ═══════════════════════════════════════════════════════════════
+  ollama:
+    image: ollama/ollama:latest
+    container_name: camodevops-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - camodevops
+
+  # ═══════════════════════════════════════════════════════════════
+  # NGINX — Reverse Proxy (Optional, for SSL)
+  # ═══════════════════════════════════════════════════════════════
+  nginx:
+    image: nginx:alpine
+    container_name: camodevops-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - web
+    networks:
+      - camodevops
+
+volumes:
+  harness-memory:
+  ollama-models:
+
+networks:
+  camodevops:
+    driver: bridge
