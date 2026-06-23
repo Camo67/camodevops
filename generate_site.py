@@ -81,6 +81,7 @@ SHARED_HEAD = """<!DOCTYPE html>
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
                     <a href="index.html" class="nav-link hover:text-camo-accent transition-colors {nav_home}">Home</a>
                     <a href="platform.html" class="nav-link hover:text-camo-accent transition-colors {nav_platform}">Platform</a>
+                    <a href="services.html" class="nav-link hover:text-camo-accent transition-colors {nav_services}">Services</a>
                     <a href="architecture.html" class="nav-link hover:text-camo-accent transition-colors {nav_architecture}">Architecture</a>
                     <a href="sovereignty.html" class="nav-link hover:text-camo-accent transition-colors {nav_sovereignty}">Sovereignty</a>
                     <a href="audit.html" class="px-4 py-2 bg-camo-accent/10 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/20 transition-all {nav_audit}">Request Audit</a>
@@ -203,6 +204,39 @@ PAGES = {
             </div>
         </div>
     </section>
+
+    <!-- Credentials -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 items-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                        <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                        CREDENTIALS
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Certified in AI for small business</h2>
+                    <p class="text-zinc-400 leading-relaxed mb-6">
+                        We don't just talk about AI for SMEs &mdash; we're formally certified in it. Cameron De Vries holds the <span class="text-white font-semibold">AI Fluency for Small Businesses</span> Certificate of Completion, issued by Anthropic in partnership with PayPal.
+                    </p>
+                    <ul class="space-y-3 text-zinc-400 mb-8">
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Practical, business-first application of modern AI.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Focused on the operational reality of small and medium businesses.</li>
+                        <li class="flex items-start gap-3"><span class="text-camo-accent mt-1">✓</span> Issued by Anthropic &amp; PayPal.</li>
+                    </ul>
+                    <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        View certificate (PDF)
+                    </a>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-camo-accent/20 rounded-xl blur-2xl opacity-30"></div>
+                    <a href="cert-ai-fluency.pdf" target="_blank" rel="noopener noreferrer" class="relative block rounded-xl overflow-hidden border border-camo-800 hover:border-camo-accent/50 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
+                        <img src="cert-ai-fluency.png" alt="Certificate of Completion — AI Fluency for Small Businesses, awarded to Cameron De Vries by Anthropic and PayPal" class="w-full h-auto" loading="lazy" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 """,
     },
     "platform.html": {
@@ -280,6 +314,197 @@ PAGES = {
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+""",
+    },
+    "services.html": {
+        "title": "Services",
+        "nav": {"nav_services": "text-camo-accent"},
+        "content": """
+    <!-- Services Hero -->
+    <section class="py-20 border-b border-camo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    WHAT WE BUILD
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Services</h1>
+                <p class="text-lg text-zinc-400 leading-relaxed">
+                    Most businesses run on separate, manual systems &mdash; the counter, the website, WhatsApp, and the books all live apart. We pull all of it into one place you can see, search and control: <span class="text-white font-semibold">one screen, one source of truth</span>. Take the full Business OS, or any module on its own.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Catalog -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+            <!-- 01 SALES CHANNELS -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">01</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Sales Channels <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; unifying how you sell</span></h2>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">WhatsApp Business Integration</h3>
+                        <p class="text-sm text-zinc-400">Self-hosted engine with Meta Cloud API fallback. Stock queries, order updates and customer-service replies &mdash; rate-limited for account safety.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Instagram Integration</h3>
+                        <p class="text-sm text-zinc-400">DMs and product enquiries funnelled into the same unified system, so nothing slips through the cracks.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Shopify Website Sync</h3>
+                        <p class="text-sm text-zinc-400">Admin API and webhooks for live, two-way inventory and pricing between your online store and the counter.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">In-Store POS Connector</h3>
+                        <p class="text-sm text-zinc-400">Read-only link to your point-of-sale SQL Server for live counter stock &mdash; never touching your live data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02 INVENTORY OPERATIONS -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">02</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Inventory Operations <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; one source of truth</span></h2>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Inventory Command Console</h3>
+                        <p class="text-sm text-zinc-400">A single-screen control room: POS, Shopify and WhatsApp in sync, with live search and reorder alerts.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Custom Inventory Logging</h3>
+                        <p class="text-sm text-zinc-400">A full audit trail &mdash; every receipt, sale and adjustment logged with who, what and when.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Stock-Take Module</h3>
+                        <p class="text-sm text-zinc-400">Physical count vs system, with variance flagging and reconciliation &mdash; without closing the shop.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Bin Allocation System</h3>
+                        <p class="text-sm text-zinc-400">Know exactly where every part lives &mdash; aisle, shelf and bin. Faster picking, less lost stock.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 BUSINESS INTELLIGENCE -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">03</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Business Intelligence <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; see and plan</span></h2>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">CRM + Email Integration</h3>
+                        <p class="text-sm text-zinc-400">Customer history and communication in one place, wired into your existing mailbox.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Financial Tracking &amp; Reporting</h3>
+                        <p class="text-sm text-zinc-400">Costs, revenue, returns and margins per product and per channel. Know what is spent, earned and left.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Stock Velocity Analytics</h3>
+                        <p class="text-sm text-zinc-400">Fast movers vs dead stock &mdash; see what is tying up cash and what to reorder.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Google Workspace Integration</h3>
+                        <p class="text-sm text-zinc-400">Sheets, Drive, Gmail and Calendar connected to fit how your team already works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 04 LOCAL AI LAYER (highlighted) -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">04</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Local AI Layer <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; intelligence that stays in the building</span></h2>
+                </div>
+                <div class="relative p-8 rounded-xl bg-camo-900 border-2 border-camo-accent/40 shadow-[0_0_30px_rgba(20,184,166,0.1)]">
+                    <h3 class="text-xl font-bold text-camo-accent font-mono mb-3">Local AI Integration</h3>
+                    <p class="text-zinc-300 max-w-3xl leading-relaxed">On-premise AI for natural-language stock queries and business insights. Ask the system questions in plain language and it answers from your own data &mdash; private, with no per-call cloud fees, and ready to expand. This is CamoFlow OS in action: AI that lives on your machine, not someone else's cloud.</p>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">No per-token bills</span>
+                        <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">100% data residency</span>
+                        <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">Runs offline</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 05 DATA ONBOARDING & HARDWARE -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">05</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Data Onboarding &amp; Hardware</h2>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Inventory Onboarding</h3>
+                        <p class="text-sm text-zinc-400">Migrate your full catalogue &mdash; thousands of SKUs extracted, validated, de-duplicated and loaded, with a dry-run report before go-live.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Zebra Label Printer Integration</h3>
+                        <p class="text-sm text-zinc-400">Drive your existing Zebra hardware &mdash; print barcode and inventory labels straight from the console.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 06 LOGISTICS FOUNDATION -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">06</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Logistics Foundation <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; built for the future</span></h2>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Vehicle Tracking + Maps Foundation</h3>
+                        <p class="text-sm text-zinc-400">Maps integration and tracking groundwork, so you are ready to dispatch and deliver in a later phase without re-platforming.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 07 QUALITY & DELIVERY -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">07</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Quality &amp; Delivery</h2>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Testing &amp; Quality Assurance</h3>
+                        <p class="text-sm text-zinc-400">A full automated test suite across every connector. Validated before it touches your live business.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Documentation &amp; Training</h3>
+                        <p class="text-sm text-zinc-400">Plain-language docs, a deployment runbook and a live team training session.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Deployment &amp; On-Site Setup</h3>
+                        <p class="text-sm text-zinc-400">Install on your server, configure automation, harden security and back-ups, and go live.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Delivery Model + CTA -->
+    <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-white mb-4">One unified Business OS &mdash; or any module on its own</h2>
+            <p class="text-zinc-400 max-w-3xl mx-auto mb-8 leading-relaxed">
+                Every service above plugs into one local-first foundation. Start with a single integration, or roll out the full system in a focused pilot &mdash; typically four weeks from scattered, manual operation to one trackable, queryable platform you own.
+            </p>
+            <a href="audit.html" class="inline-block px-10 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
+                Scope Your Build
+            </a>
+            <p class="mt-4 text-sm text-zinc-500 font-mono">Start with a 60-minute Discovery Audit. No commitment required.</p>
         </div>
     </section>
 """,
@@ -618,6 +843,7 @@ for filename, page_data in PAGES.items():
     nav_classes = {
         "nav_home": "",
         "nav_platform": "",
+        "nav_services": "",
         "nav_architecture": "",
         "nav_sovereignty": "",
         "nav_audit": "",
