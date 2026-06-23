@@ -247,6 +247,50 @@ PAGES = {
         </div>
     </section>
 
+    <!-- What we build for you -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    WHAT WE ACTUALLY DO
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What we build for you</h2>
+                <p class="text-lg text-zinc-400 leading-relaxed">Sovereign AI is the engine &mdash; here's what it does for your business. We pull your scattered, manual operations &mdash; the counter, the website, WhatsApp, the books &mdash; into one system you can see, search and control.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Sell everywhere, in one place</h3>
+                    <p class="text-sm text-zinc-400">WhatsApp, Instagram, Shopify and your in-store counter all feed one system &mdash; always in sync, never oversold.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Always-correct stock</h3>
+                    <p class="text-sm text-zinc-400">One source of truth for inventory, with live search and reorder alerts &mdash; so you never sell what's not on the shelf.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Know your numbers</h3>
+                    <p class="text-sm text-zinc-400">Costs, sales, returns and profit per product and per channel. See what makes money and what ties up cash.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Local AI you own</h3>
+                    <p class="text-sm text-zinc-400">Ask your business questions in plain language. It runs on your hardware &mdash; private, with no per-question cloud fees.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Your tools, connected</h3>
+                    <p class="text-sm text-zinc-400">CRM, Google Workspace, label printers and more &mdash; wired into the way your team already works.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Built to last &mdash; and yours</h3>
+                    <p class="text-sm text-zinc-400">Catalogue onboarding, testing, training and on-site deployment &mdash; solid from day one, and you own it outright.</p>
+                </div>
+            </div>
+            <div class="text-center mt-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <a href="services.html" class="inline-block px-8 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">See everything we build →</a>
+                <p class="mt-4 text-sm text-zinc-500 font-mono">Full breakdown of every service on the Services page.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Credentials -->
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -878,6 +922,14 @@ sequenceDiagram
             <div class="space-y-5 text-zinc-400 leading-relaxed">
                 <p>My work is forged in the fires of real-world struggle. Through <em>Unspoken Truths</em>, I've documented the harsh realities of our economy and the strength it takes to survive when the system is rigged against you.</p>
                 <p>I know the cost of every cent. I know the grit required to build something from nothing. That lived experience is the foundation of every tool I deploy. When you partner with me, you aren't just getting an AI dev; you're getting a collaborator who understands that <span class="text-white font-semibold">efficiency is the bridge between surviving and thriving.</span></p>
+            </div>
+            <div class="mt-8 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <p class="text-sm font-mono text-camo-accent mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.5 17.3c-.2.35-.66.46-1 .26-2.74-1.67-6.19-2.05-10.25-1.12-.4.09-.8-.16-.89-.56-.09-.4.16-.8.56-.89 4.44-1.02 8.26-.58 11.32 1.29.36.2.46.66.26 1.02zm1.47-3.27c-.27.43-.84.57-1.27.3-3.14-1.93-7.93-2.49-11.64-1.36-.49.15-1.01-.13-1.16-.61-.15-.49.13-1.01.61-1.16 4.24-1.29 9.52-.66 13.13 1.56.43.27.57.84.3 1.27zm.13-3.41C15.13 8.36 8.9 8.15 5.27 9.26c-.58.18-1.2-.15-1.38-.73-.18-.58.15-1.2.73-1.38 4.17-1.27 11.05-1.02 15.42 1.57.52.31.69.99.38 1.51-.31.52-.99.69-1.51.38z"/></svg>
+                    Listen &mdash; <em>Unspoken Truths</em>
+                </p>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/7EoivtiQqdy36khDaPvPky?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <p class="mt-3 text-sm"><a href="https://open.spotify.com/episode/7EoivtiQqdy36khDaPvPky" target="_blank" rel="noopener noreferrer" class="text-camo-accent hover:text-camo-accentHover transition-colors">Open in Spotify →</a></p>
             </div>
         </div>
     </section>
