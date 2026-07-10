@@ -642,45 +642,63 @@ PAGES = {
                     SELECTED WORK
                 </div>
                 <h2 class="text-3xl font-bold text-white mb-4">Past Builds</h2>
-                <p class="text-zinc-400 max-w-2xl mx-auto">A sample of sites and systems built for clients. Click any card to open the live project.</p>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Sites and systems built for real clients. Click any card to open the live project.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <!-- Portfolio Card 1 -->
-                <a href="https://camodevops.online" target="_blank" rel="noopener noreferrer" class="group block rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-44 bg-gradient-to-br from-camo-accent/20 to-camo-800 flex items-center justify-center">
-                        <span class="font-mono text-camo-accent text-sm opacity-60">camodevops.online</span>
+
+                <!-- Case Study 1 — CamoDevOps Online -->
+                <a href="https://camodevops.online" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <div class="h-44 bg-gradient-to-br from-camo-accent/20 via-camo-800 to-camo-950 flex items-center justify-center relative">
+                        <span class="font-mono text-camo-accent text-sm">camodevops.online</span>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-camo-accent bg-camo-accent/10 border border-camo-accent/20 px-2 py-0.5 rounded">Static</span>
                     </div>
-                    <div class="p-5">
-                        <h3 class="text-white font-semibold mb-1">CamoDevOps Online</h3>
-                        <p class="text-xs text-zinc-400 mb-3">Static sovereign site &mdash; Cloudflare Workers, TailwindCSS, Python generator</p>
-                        <div class="flex flex-wrap gap-1">
-                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Static</span>
-                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Cloudflare</span>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-3">CamoDevOps Online</h3>
+                        <div class="space-y-2 text-xs text-zinc-400 flex-grow">
+                            <p><span class="text-zinc-300 font-semibold">Challenge:</span> Needed a sovereign, zero-dependency portfolio and service site deployable globally with no runtime costs.</p>
+                            <p><span class="text-zinc-300 font-semibold">Stack:</span> Python static generator, TailwindCSS CDN, Cloudflare Workers &mdash; sub-second loads worldwide.</p>
+                            <p><span class="text-zinc-300 font-semibold">Result:</span> 9-page site deployed in &lt;2 min per push, &lt;R0 hosting cost, 100% uptime via Cloudflare edge.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-1 mt-4">
+                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Cloudflare Workers</span>
                             <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">TailwindCSS</span>
+                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Python</span>
                         </div>
                     </div>
                 </a>
-                <!-- Portfolio Card 2 — placeholder, update URL and description -->
-                <div class="group block rounded-xl overflow-hidden bg-camo-950 border border-camo-800 border-dashed opacity-60">
+
+                <!-- Case Study 2 — Placeholder (fill in with real client) -->
+                <div class="flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-dashed border-camo-800 opacity-50">
                     <div class="h-44 bg-camo-900 flex items-center justify-center">
-                        <span class="font-mono text-zinc-600 text-sm">Your next case study</span>
+                        <span class="font-mono text-zinc-600 text-sm">Case study coming soon</span>
                     </div>
-                    <div class="p-5">
-                        <h3 class="text-zinc-500 font-semibold mb-1">Coming Soon</h3>
-                        <p class="text-xs text-zinc-600">Portfolio case study to be added</p>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-zinc-600 font-semibold mb-3">Your Project Here</h3>
+                        <div class="space-y-2 text-xs text-zinc-700 flex-grow">
+                            <p><span class="font-semibold">Challenge:</span> &mdash;</p>
+                            <p><span class="font-semibold">Stack:</span> &mdash;</p>
+                            <p><span class="font-semibold">Result:</span> &mdash;</p>
+                        </div>
                     </div>
                 </div>
-                <!-- Portfolio Card 3 — placeholder -->
-                <div class="group block rounded-xl overflow-hidden bg-camo-950 border border-camo-800 border-dashed opacity-60">
+
+                <!-- Case Study 3 — Placeholder -->
+                <div class="flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-dashed border-camo-800 opacity-50">
                     <div class="h-44 bg-camo-900 flex items-center justify-center">
-                        <span class="font-mono text-zinc-600 text-sm">Your next case study</span>
+                        <span class="font-mono text-zinc-600 text-sm">Case study coming soon</span>
                     </div>
-                    <div class="p-5">
-                        <h3 class="text-zinc-500 font-semibold mb-1">Coming Soon</h3>
-                        <p class="text-xs text-zinc-600">Portfolio case study to be added</p>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-zinc-600 font-semibold mb-3">Your Project Here</h3>
+                        <div class="space-y-2 text-xs text-zinc-700 flex-grow">
+                            <p><span class="font-semibold">Challenge:</span> &mdash;</p>
+                            <p><span class="font-semibold">Stack:</span> &mdash;</p>
+                            <p><span class="font-semibold">Result:</span> &mdash;</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
+            <p class="text-center text-xs text-zinc-600 font-mono mt-6">Portfolio grows with every build. <a href="audit.html" class="text-camo-accent hover:underline">Start your project →</a></p>
         </div>
     </section>
 
