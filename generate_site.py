@@ -253,39 +253,43 @@ PAGES = {
             <div class="text-center max-w-3xl mx-auto mb-14 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
                     <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
-                    WHAT WE ACTUALLY DO
+                    FOUR CRAFTS. ONE OPERATOR.
                 </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What we build for you</h2>
-                <p class="text-lg text-zinc-400 leading-relaxed">Sovereign AI is the engine &mdash; here's what it does for your business. We pull your scattered, manual operations &mdash; the counter, the website, WhatsApp, the books &mdash; into one system you can see, search and control.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Camo delivers</h2>
+                <p class="text-lg text-zinc-400 leading-relaxed">Sound Technician. Vibe Coder. AI Orchestrator. Web Designer. Four disciplines in one operator &mdash; so your event sounds right, your product ships fast, your AI runs sovereign, and your site converts.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
                 <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white mb-2">Sell everywhere, in one place</h3>
-                    <p class="text-sm text-zinc-400">WhatsApp, Instagram, Shopify and your in-store counter all feed one system &mdash; always in sync, never oversold.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#127911; SOUND TECHNICIAN</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Audio that moves people</h3>
+                    <p class="text-sm text-zinc-400">Live events, studio sessions, podcasts and broadcast &mdash; FOH mixing, clean capture, mixes that translate on every speaker.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white mb-2">Always-correct stock</h3>
-                    <p class="text-sm text-zinc-400">One source of truth for inventory, with live search and reorder alerts &mdash; so you never sell what's not on the shelf.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#9000; VIBE CODER</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Products that ship fast</h3>
+                    <p class="text-sm text-zinc-400">AI-assisted rapid development: web apps, automation scripts, MVP sprints and internal tools built and live in days, not months.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white mb-2">Know your numbers</h3>
-                    <p class="text-sm text-zinc-400">Costs, sales, returns and profit per product and per channel. See what makes money and what ties up cash.</p>
-                </div>
-                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#129302; AI ORCHESTRATOR</p>
                     <h3 class="text-lg font-bold text-white mb-2">Local AI you own</h3>
-                    <p class="text-sm text-zinc-400">Ask your business questions in plain language. It runs on your hardware &mdash; private, with no per-question cloud fees.</p>
+                    <p class="text-sm text-zinc-400">CamoFlow OS: multi-agent swarms and RAG pipelines on your hardware. No cloud fees, 100% data residency, runs offline.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white mb-2">Your tools, connected</h3>
-                    <p class="text-sm text-zinc-400">CRM, Google Workspace, label printers and more &mdash; wired into the way your team already works.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#127760; WEB DESIGNER</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Sites that load fast &amp; last</h3>
+                    <p class="text-sm text-zinc-400">Static brochure sites from R3,500, dynamic CMS platforms from R8,000, and custom sovereign apps from R20,000 &mdash; no plugin bloat.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
+                    <h3 class="text-lg font-bold text-white mb-2">Everything connected</h3>
+                    <p class="text-sm text-zinc-400">WhatsApp, Shopify, Google Workspace, CRM, label printers &mdash; wired into one system you can see, search and control.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
                     <h3 class="text-lg font-bold text-white mb-2">Built to last &mdash; and yours</h3>
-                    <p class="text-sm text-zinc-400">Catalogue onboarding, testing, training and on-site deployment &mdash; solid from day one, and you own it outright.</p>
+                    <p class="text-sm text-zinc-400">Docs, training and on-site handover included. You own what was built &mdash; no subscription trap, no dependency on me to keep it running.</p>
                 </div>
             </div>
             <div class="text-center mt-10 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <a href="services.html" class="inline-block px-8 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">See everything we build →</a>
+                <a href="services.html" class="inline-block px-8 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">See all services &amp; pricing →</a>
                 <p class="mt-4 text-sm text-zinc-500 font-mono">Full breakdown of every service on the Services page.</p>
             </div>
         </div>
@@ -427,165 +431,206 @@ PAGES = {
             <div class="text-center max-w-3xl mx-auto scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
                     <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
-                    WHAT WE BUILD
+                    FOUR CRAFTS. ONE OPERATOR.
                 </div>
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Services</h1>
-                <p class="text-lg text-zinc-400 leading-relaxed">
-                    Most businesses run on separate, manual systems &mdash; the counter, the website, WhatsApp, and the books all live apart. We pull all of it into one place you can see, search and control: <span class="text-white font-semibold">one screen, one source of truth</span>. Take the full Business OS, or any module on its own.
+                <p class="text-lg text-zinc-400 leading-relaxed mb-8">
+                    Sound Technician. Vibe Coder. AI Orchestrator. Web Designer. Four disciplines that rarely live in one operator &mdash; and that combination is the edge. Bring one craft or all four to your next project.
                 </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="px-4 py-2 rounded-full bg-camo-800 border border-camo-accent/30 text-camo-accent font-mono text-sm">&#127911; Sound Technician</span>
+                    <span class="px-4 py-2 rounded-full bg-camo-800 border border-camo-accent/30 text-camo-accent font-mono text-sm">&#9000; Vibe Coder</span>
+                    <span class="px-4 py-2 rounded-full bg-camo-800 border border-camo-accent/30 text-camo-accent font-mono text-sm">&#129302; AI Orchestrator</span>
+                    <span class="px-4 py-2 rounded-full bg-camo-800 border border-camo-accent/30 text-camo-accent font-mono text-sm">&#127760; Web Designer</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Service Catalog -->
     <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
 
-            <!-- 01 SALES CHANNELS -->
+            <!-- 01 SOUND TECHNICIAN -->
             <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-3">
                     <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">01</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Sales Channels <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; unifying how you sell</span></h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Sound Technician <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; the room sounds right</span></h2>
                 </div>
+                <p class="text-zinc-400 mb-8 max-w-2xl">Professional audio engineering for live events, studio sessions, podcasts and broadcast. Clean capture, honest mixes, audiences that feel it.</p>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">WhatsApp Business Integration</h3>
-                        <p class="text-sm text-zinc-400">Self-hosted engine with Meta Cloud API fallback. Stock queries, order updates and customer-service replies &mdash; rate-limited for account safety.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Live Event Sound Engineering</h3>
+                        <p class="text-sm text-zinc-400">FOH and monitor mixing for concerts, conferences and corporate events. PA system setup, gain structure, and real-time mix management from front to back.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Instagram Integration</h3>
-                        <p class="text-sm text-zinc-400">DMs and product enquiries funnelled into the same unified system, so nothing slips through the cracks.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Studio Recording &amp; Mixing</h3>
+                        <p class="text-sm text-zinc-400">Session recording, tracking, editing and stereo mixing for artists, bands and content creators. Mixes that translate on every speaker.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Shopify Website Sync</h3>
-                        <p class="text-sm text-zinc-400">Admin API and webhooks for live, two-way inventory and pricing between your online store and the counter.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Podcast Production &amp; Post</h3>
+                        <p class="text-sm text-zinc-400">End-to-end podcast audio: recording setup, noise reduction, levelling, EQ and final master to loudness spec. Professional from episode one.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">In-Store POS Connector</h3>
-                        <p class="text-sm text-zinc-400">Read-only link to your point-of-sale SQL Server for live counter stock &mdash; never touching your live data.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Broadcast &amp; Streaming Audio</h3>
+                        <p class="text-sm text-zinc-400">Audio chain setup for live streams, YouTube, radio and hybrid events. Consistent loudness, zero dropout, broadcast-ready output.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 02 INVENTORY OPERATIONS -->
+            <!-- 02 VIBE CODER -->
             <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-3">
                     <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">02</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Inventory Operations <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; one source of truth</span></h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Vibe Coder <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; ideas that ship</span></h2>
                 </div>
+                <p class="text-zinc-400 mb-8 max-w-2xl">AI-assisted rapid development. Products go from brief to live in days, not months &mdash; lean, tested, and yours to own outright.</p>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Inventory Command Console</h3>
-                        <p class="text-sm text-zinc-400">A single-screen control room: POS, Shopify and WhatsApp in sync, with live search and reorder alerts.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Rapid Web &amp; App Builds</h3>
+                        <p class="text-sm text-zinc-400">Full-stack web apps built fast with AI-assisted development. Clean code, responsive design, deployed and live before the other quote arrives.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Custom Inventory Logging</h3>
-                        <p class="text-sm text-zinc-400">A full audit trail &mdash; every receipt, sale and adjustment logged with who, what and when.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Automation &amp; Integration Scripts</h3>
+                        <p class="text-sm text-zinc-400">Python scripts and API connectors that wire your tools together &mdash; WhatsApp, Google Workspace, Shopify, databases. One trigger, zero manual steps.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Stock-Take Module</h3>
-                        <p class="text-sm text-zinc-400">Physical count vs system, with variance flagging and reconciliation &mdash; without closing the shop.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">MVP &amp; Prototype Sprints</h3>
+                        <p class="text-sm text-zinc-400">From brief to clickable prototype in a focused sprint &mdash; real enough to demo to investors or test with users before committing to the full build.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Bin Allocation System</h3>
-                        <p class="text-sm text-zinc-400">Know exactly where every part lives &mdash; aisle, shelf and bin. Faster picking, less lost stock.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Dashboards &amp; Internal Tools</h3>
+                        <p class="text-sm text-zinc-400">Control rooms, client portals, reporting dashboards and inventory consoles built to spec. No bloat, no unnecessary dependencies &mdash; just what the job requires.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 03 BUSINESS INTELLIGENCE -->
+            <!-- 03 AI ORCHESTRATOR -->
             <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-3">
                     <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">03</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Business Intelligence <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; see and plan</span></h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">AI Orchestrator <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; intelligence on your machine</span></h2>
                 </div>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">CRM + Email Integration</h3>
-                        <p class="text-sm text-zinc-400">Customer history and communication in one place, wired into your existing mailbox.</p>
-                    </div>
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Financial Tracking &amp; Reporting</h3>
-                        <p class="text-sm text-zinc-400">Costs, revenue, returns and margins per product and per channel. Know what is spent, earned and left.</p>
-                    </div>
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Stock Velocity Analytics</h3>
-                        <p class="text-sm text-zinc-400">Fast movers vs dead stock &mdash; see what is tying up cash and what to reorder.</p>
-                    </div>
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Google Workspace Integration</h3>
-                        <p class="text-sm text-zinc-400">Sheets, Drive, Gmail and Calendar connected to fit how your team already works.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 04 LOCAL AI LAYER (highlighted) -->
-            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">04</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Local AI Layer <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; intelligence that stays in the building</span></h2>
-                </div>
-                <div class="relative p-8 rounded-xl bg-camo-900 border-2 border-camo-accent/40 shadow-[0_0_30px_rgba(20,184,166,0.1)]">
-                    <h3 class="text-xl font-bold text-camo-accent font-mono mb-3">Local AI Integration</h3>
-                    <p class="text-zinc-300 max-w-3xl leading-relaxed">On-premise AI for natural-language stock queries and business insights. Ask the system questions in plain language and it answers from your own data &mdash; private, with no per-call cloud fees, and ready to expand. This is CamoFlow OS in action: AI that lives on your machine, not someone else's cloud.</p>
+                <p class="text-zinc-400 mb-8 max-w-2xl">Sovereign, local-first AI. Multi-agent systems, RAG pipelines, and the full CamoFlow OS &mdash; no cloud bills, no data leaks, runs offline.</p>
+                <div class="relative p-8 rounded-xl bg-camo-900 border-2 border-camo-accent/40 shadow-[0_0_30px_rgba(20,184,166,0.1)] mb-6">
+                    <h3 class="text-xl font-bold text-camo-accent font-mono mb-3">CamoFlow OS &mdash; Flagship Local AI Engine</h3>
+                    <p class="text-zinc-300 max-w-3xl leading-relaxed">A fully sovereign AI operating system deployed on your own hardware. Multi-agent swarms, a natural-language query layer over your business data, and automated workflows &mdash; 100% data residency, no per-token cloud fees, runs offline.</p>
                     <div class="mt-5 flex flex-wrap gap-2">
                         <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">No per-token bills</span>
                         <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">100% data residency</span>
                         <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">Runs offline</span>
+                        <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-1 rounded">You own it outright</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- 05 DATA ONBOARDING & HARDWARE -->
-            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">05</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Data Onboarding &amp; Hardware</h2>
-                </div>
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Inventory Onboarding</h3>
-                        <p class="text-sm text-zinc-400">Migrate your full catalogue &mdash; thousands of SKUs extracted, validated, de-duplicated and loaded, with a dry-run report before go-live.</p>
-                    </div>
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Zebra Label Printer Integration</h3>
-                        <p class="text-sm text-zinc-400">Drive your existing Zebra hardware &mdash; print barcode and inventory labels straight from the console.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 06 LOGISTICS FOUNDATION -->
-            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">06</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Logistics Foundation <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; built for the future</span></h2>
-                </div>
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Vehicle Tracking + Maps Foundation</h3>
-                        <p class="text-sm text-zinc-400">Maps integration and tracking groundwork, so you are ready to dispatch and deliver in a later phase without re-platforming.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 07 QUALITY & DELIVERY -->
-            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">07</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-white">Quality &amp; Delivery</h2>
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Testing &amp; Quality Assurance</h3>
-                        <p class="text-sm text-zinc-400">A full automated test suite across every connector. Validated before it touches your live business.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Local Multi-Agent Deployment</h3>
+                        <p class="text-sm text-zinc-400">Agent swarms built on open-weight models (Ollama, DeepSeek, Qwen) orchestrated on-premise. Zero external data egress, 40%+ lower latency than cloud.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Documentation &amp; Training</h3>
-                        <p class="text-sm text-zinc-400">Plain-language docs, a deployment runbook and a live team training session.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Sovereign RAG Pipelines</h3>
+                        <p class="text-sm text-zinc-400">On-premise Retrieval-Augmented Generation over your documents and databases. Ask in plain language, get answers from your own data. POPIA-compliant by design.</p>
                     </div>
                     <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
-                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Deployment &amp; On-Site Setup</h3>
-                        <p class="text-sm text-zinc-400">Install on your server, configure automation, harden security and back-ups, and go live.</p>
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Workflow Automation</h3>
+                        <p class="text-sm text-zinc-400">AI decision nodes wired into your operational pipelines. CSV drops, Telegram triggers, API events &mdash; the system reads, acts, and writes back without lifting a finger.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">IaC AI Deployment</h3>
+                        <p class="text-sm text-zinc-400">Every AI service packaged as a hardened Docker container with Terraform or Ansible playbooks. Reproducible, auditable, zero config drift.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">AI Readiness Audit</h3>
+                        <p class="text-sm text-zinc-400">A focused technical review of your stack to map exactly where local AI integrates, what the prerequisites are, and what ROI looks like before a line is written.</p>
+                    </div>
+                    <div class="p-5 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_25px_rgba(20,184,166,0.12)] transition-all duration-300">
+                        <h3 class="text-white font-semibold font-mono text-sm mb-2">Training &amp; Handover</h3>
+                        <p class="text-sm text-zinc-400">Plain-language docs, runbooks and a live training session. You own the system and understand it &mdash; no dependency on me to keep it running.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 04 WEB DESIGN -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="flex items-center gap-4 mb-3">
+                    <span class="font-mono text-camo-accent text-sm border border-camo-accent/30 rounded px-2 py-1">04</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">Web Design <span class="text-zinc-500 font-normal text-base md:text-lg">&mdash; fast, sovereign, yours</span></h2>
+                </div>
+                <p class="text-zinc-400 mb-8 max-w-2xl">Performance-first websites built without bloat. Static sites that load in under a second, dynamic platforms you control, and custom sovereign apps that run on your own infrastructure.</p>
+
+                <!-- Pricing tiers -->
+                <div class="grid md:grid-cols-3 gap-6 mb-10">
+                    <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 flex flex-col">
+                        <div class="mb-4">
+                            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Static / Brochure Site</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Lightning &amp; Clean</h3>
+                        </div>
+                        <p class="text-3xl font-bold text-camo-accent mb-1">R3,500 &ndash; R6,500 <span class="text-sm text-zinc-500 font-normal">once-off</span></p>
+                        <p class="text-xs text-zinc-500 font-mono mb-5">Best for startups, local businesses, portfolios &amp; landing pages</p>
+                        <ul class="space-y-2 text-sm text-zinc-400 flex-grow mb-6">
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> 1&ndash;5 fully responsive pages</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> SEO optimization built in</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Contact form integration</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> High-performance static hosting (Cloudflare)</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Sub-second page loads</li>
+                        </ul>
+                        <a href="audit.html" class="block text-center px-4 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">Get a Quote</a>
+                    </div>
+                    <div class="relative p-8 rounded-xl bg-camo-900 border-2 border-camo-accent flex flex-col shadow-[0_0_30px_rgba(20,184,166,0.1)]">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-camo-accent text-camo-950 text-xs font-bold rounded-full">POPULAR</div>
+                        <div class="mb-4">
+                            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Dynamic / CMS Site</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Content You Control</h3>
+                        </div>
+                        <p class="text-3xl font-bold text-camo-accent mb-1">R8,000 &ndash; R15,000 <span class="text-sm text-zinc-500 font-normal">once-off</span></p>
+                        <p class="text-xs text-zinc-500 font-mono mb-5">Best for SMEs needing blogs, booking, or regular updates</p>
+                        <ul class="space-y-2 text-sm text-zinc-400 flex-grow mb-6">
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Multi-page with headless CMS</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> User-managed content dashboard</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Dynamic forms &amp; basic analytics</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Blog / news / portfolio module</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Mobile-first responsive design</li>
+                        </ul>
+                        <a href="audit.html" class="block text-center px-4 py-3 bg-camo-accent text-camo-950 rounded hover:bg-camo-accentHover transition-colors font-bold">Get a Quote</a>
+                    </div>
+                    <div class="p-8 rounded-xl bg-camo-950 border border-camo-800 flex flex-col">
+                        <div class="mb-4">
+                            <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest">Custom Sovereign App</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Built to Own</h3>
+                        </div>
+                        <p class="text-3xl font-bold text-camo-accent mb-1">From R20,000 <span class="text-sm text-zinc-500 font-normal">project-based</span></p>
+                        <p class="text-xs text-zinc-500 font-mono mb-5">Best for e-commerce, custom dashboards &amp; business platforms</p>
+                        <ul class="space-y-2 text-sm text-zinc-400 flex-grow mb-6">
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Advanced integrations &amp; APIs</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Yoco / Stripe payment gateways</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> User authentication &amp; RBAC</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Custom database design</li>
+                            <li class="flex items-start gap-2"><span class="text-camo-accent mt-0.5">&#10003;</span> Self-hosted or sovereign deployment</li>
+                        </ul>
+                        <a href="audit.html" class="block text-center px-4 py-3 border border-camo-accent/30 text-camo-accent rounded hover:bg-camo-accent/10 transition-colors font-semibold">Discuss Build</a>
+                    </div>
+                </div>
+
+                <!-- Monthly retainers -->
+                <div class="rounded-xl bg-camo-900/50 border border-camo-800 p-6">
+                    <h3 class="text-lg font-bold text-white font-mono mb-4">Monthly Retainer Add-Ons</h3>
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-lg bg-camo-950 border border-camo-800">
+                            <h4 class="text-white font-semibold text-sm mb-1">Hosting &amp; Maintenance</h4>
+                            <p class="text-camo-accent font-mono font-bold text-sm mb-1">From R50 / month</p>
+                            <p class="text-xs text-emerald-400 font-semibold mb-2">3 months free hosting included</p>
+                            <p class="text-xs text-zinc-400">Domain management, SSL, automated weekly backups and uptime monitoring.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-camo-950 border border-camo-800">
+                            <h4 class="text-white font-semibold text-sm mb-1">Content Updates &amp; Support</h4>
+                            <p class="text-camo-accent font-mono font-bold text-sm mb-2">R450 &ndash; R900 / month</p>
+                            <p class="text-xs text-zinc-400">Dedicated hours for text, image and minor design updates each month.</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-camo-950 border border-camo-800">
+                            <h4 class="text-white font-semibold text-sm mb-1">AI &amp; Automation Integration</h4>
+                            <p class="text-camo-accent font-mono font-bold text-sm mb-2">Custom add-on</p>
+                            <p class="text-xs text-zinc-400">Link your site to backend workflows, CRM lead-capture and automated email sequencing.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -593,17 +638,268 @@ PAGES = {
         </div>
     </section>
 
-    <!-- Delivery Model + CTA -->
+    <!-- Site Preview Modal -->
+    <div id="site-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/85 backdrop-blur-sm p-3 md:p-6" role="dialog" aria-modal="true" aria-label="Site preview">
+        <div class="relative w-full max-w-6xl flex flex-col bg-camo-950 border border-camo-800 rounded-xl overflow-hidden shadow-2xl" style="height:88vh">
+            <!-- Modal title bar -->
+            <div class="flex items-center justify-between px-4 py-2.5 bg-camo-900 border-b border-camo-800 flex-shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    <a id="modal-site-link" href="#" target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-camo-accent hover:text-camo-accentHover transition-colors truncate max-w-xs" title="Open in new tab"></a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a id="modal-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-400 hover:text-white transition-colors hidden sm:inline">Open in new tab &rarr;</a>
+                    <button id="modal-close" class="text-zinc-400 hover:text-white transition-colors p-1 rounded hover:bg-camo-800" aria-label="Close preview">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- iframe fill -->
+            <div id="modal-loading" class="absolute inset-0 top-[45px] flex flex-col items-center justify-center bg-camo-950 z-10">
+                <div class="w-8 h-8 border-2 border-camo-accent border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p class="text-xs text-zinc-500 font-mono">Loading site&hellip;</p>
+            </div>
+            <div id="modal-blocked" class="absolute inset-0 top-[45px] hidden flex-col items-center justify-center bg-camo-950 z-10 text-center px-6">
+                <svg class="w-10 h-10 text-zinc-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                <p class="text-zinc-400 text-sm mb-4">This site restricts embedding in previews.</p>
+                <a id="modal-blocked-link" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-camo-accent text-camo-950 text-sm font-bold rounded hover:bg-camo-accentHover transition-colors">Open site directly &rarr;</a>
+            </div>
+            <iframe id="modal-iframe" src="" class="w-full flex-1 border-0 bg-white" allow="fullscreen" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <!-- Portfolio -->
     <section class="py-20 bg-camo-900/30 border-y border-camo-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-camo-accent/10 border border-camo-accent/20 text-camo-accent text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    SELECTED WORK
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4">Past Builds</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Live sites built for real clients. Click any card to preview and interact with the site.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+
+                <!-- CamoDevOps Online -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://camodevops.online" data-title="camodevops.online">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://camodevops.online" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-camo-accent bg-camo-950/80 border border-camo-accent/30 px-2 py-0.5 rounded">Static</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">CamoDevOps Online</h3>
+                        <div class="space-y-1 text-xs text-zinc-400 flex-grow">
+                            <p><span class="text-zinc-300 font-semibold">Challenge:</span> Sovereign portfolio, globally fast, zero runtime cost.</p>
+                            <p><span class="text-zinc-300 font-semibold">Stack:</span> Python &middot; TailwindCSS &middot; Cloudflare Workers.</p>
+                            <p><span class="text-zinc-300 font-semibold">Result:</span> 9 pages, &lt;2 min deploys, R0 hosting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rave Bingochi -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.ravebingochi.com/" data-title="ravebingochi.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.ravebingochi.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-purple-300 bg-camo-950/80 border border-purple-700/40 px-2 py-0.5 rounded">Entertainment</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">Rave Bingochi</h3>
+                        <p class="text-xs text-zinc-400">Entertainment &amp; creative brand site. Bold visual identity built to capture the energy of the brand.</p>
+                    </div>
+                </div>
+
+                <!-- IRL Events -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.irlevents.fun/" data-title="irlevents.fun">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.irlevents.fun/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-orange-300 bg-camo-950/80 border border-orange-700/40 px-2 py-0.5 rounded">Events</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">IRL Events</h3>
+                        <p class="text-xs text-zinc-400">Event company web presence designed to convert visitors into bookings with clear CTAs and an energetic layout.</p>
+                    </div>
+                </div>
+
+                <!-- Beloveful -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://beloveful.com/" data-title="beloveful.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://beloveful.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-rose-300 bg-camo-950/80 border border-rose-700/40 px-2 py-0.5 rounded">Lifestyle</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">Beloveful</h3>
+                        <p class="text-xs text-zinc-400">Lifestyle brand site built with warmth and elegance &mdash; designed to build emotional connection from the first scroll.</p>
+                    </div>
+                </div>
+
+                <!-- Buddies Worldwide -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://buddiesworldwide.store/" data-title="buddiesworldwide.store">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://buddiesworldwide.store/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-green-300 bg-camo-950/80 border border-green-700/40 px-2 py-0.5 rounded">E-commerce</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">Buddies Worldwide</h3>
+                        <p class="text-xs text-zinc-400">E-commerce store built for global reach &mdash; clean product layout, optimised for conversion with a community-driven brand voice.</p>
+                    </div>
+                </div>
+
+                <!-- Yong's Security -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.yongssecuriecom.com/" data-title="yongssecuriecom.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.yongssecuriecom.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-zinc-300 bg-camo-950/80 border border-zinc-600/40 px-2 py-0.5 rounded">Security</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-white font-semibold mb-2">Yong&apos;s Security</h3>
+                        <p class="text-xs text-zinc-400">Corporate security company site &mdash; professional, trustworthy design that communicates reliability to potential clients from first glance.</p>
+                    </div>
+                </div>
+
+            </div>
+            <p class="text-center text-xs text-zinc-600 font-mono mt-8">Portfolio grows with every build. <a href="audit.html" class="text-camo-accent hover:underline">Start your project &rarr;</a></p>
+        </div>
+    </section>
+
+    <!-- Portfolio interaction scripts -->
+    <script>
+    (function () {
+        var SCALE_W = 1440;
+
+        function scaleAll() {
+            document.querySelectorAll('.iframe-thumb').forEach(function (wrap) {
+                var scale = wrap.offsetWidth / SCALE_W;
+                var iframe = wrap.querySelector('iframe');
+                if (iframe) iframe.style.transform = 'scale(' + scale + ')';
+            });
+        }
+        scaleAll();
+        window.addEventListener('resize', scaleAll);
+
+        var modal = document.getElementById('site-modal');
+        var modalIframe = document.getElementById('modal-iframe');
+        var modalLink = document.getElementById('modal-site-link');
+        var modalExtLink = document.getElementById('modal-ext-link');
+        var modalBlockedLink = document.getElementById('modal-blocked-link');
+        var modalLoading = document.getElementById('modal-loading');
+        var modalBlocked = document.getElementById('modal-blocked');
+        var modalClose = document.getElementById('modal-close');
+
+        function openModal(url, title) {
+            modalLink.textContent = title;
+            modalLink.href = url;
+            modalExtLink.href = url;
+            modalBlockedLink.href = url;
+            modalLoading.style.display = 'flex';
+            modalBlocked.style.display = 'none';
+            modalIframe.src = '';
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            var timer = setTimeout(function () {
+                try {
+                    var doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
+                    if (!doc || doc.body === null || doc.body.innerHTML === '') {
+                        modalLoading.style.display = 'none';
+                        modalBlocked.style.display = 'flex';
+                    }
+                } catch (e) {
+                    modalLoading.style.display = 'none';
+                    modalBlocked.style.display = 'flex';
+                }
+            }, 4000);
+
+            modalIframe.onload = function () {
+                clearTimeout(timer);
+                try {
+                    var doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
+                    if (!doc || !doc.body || doc.body.innerHTML === '') {
+                        modalLoading.style.display = 'none';
+                        modalBlocked.style.display = 'flex';
+                    } else {
+                        modalLoading.style.display = 'none';
+                    }
+                } catch (e) {
+                    modalLoading.style.display = 'none';
+                    modalBlocked.style.display = 'flex';
+                }
+            };
+            modalIframe.src = url;
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            modalIframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.portfolio-card').forEach(function (card) {
+            card.addEventListener('click', function () {
+                openModal(card.dataset.url, card.dataset.title);
+            });
+            card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') openModal(card.dataset.url, card.dataset.title);
+            });
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+    })();
+    </script>
+
+    <!-- CTA -->
+    <section class="py-20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-white mb-4">One unified Business OS &mdash; or any module on its own</h2>
+            <h2 class="text-3xl font-bold text-white mb-4">Need one craft, or all four?</h2>
             <p class="text-zinc-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-                Every service above plugs into one local-first foundation. Start with a single integration, or roll out the full system in a focused pilot &mdash; typically four weeks from scattered, manual operation to one trackable, queryable platform you own.
+                Engage for a single discipline &mdash; a live event, a rapid web build, a sovereign AI deployment, or a new site &mdash; or bring all four together in one engagement. Start with a 60-minute Discovery Audit: no commitment, just a clear picture of what the build looks like.
             </p>
             <a href="audit.html" class="inline-block px-10 py-4 bg-camo-accent hover:bg-camo-accentHover text-camo-950 font-bold text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]">
-                Scope Your Build
+                Request a Discovery Audit
             </a>
-            <p class="mt-4 text-sm text-zinc-500 font-mono">Start with a 60-minute Discovery Audit. No commitment required.</p>
+            <p class="mt-4 text-sm text-zinc-500 font-mono">60 minutes. No sales deck. Just a technical assessment.</p>
         </div>
     </section>
 """,
@@ -885,7 +1181,7 @@ sequenceDiagram
                         I don't just write code; I build digital armor for the people the status quo forgot.
                     </p>
                     <p class="text-zinc-400 leading-relaxed">
-                        My name is <span class="text-white font-semibold">Cameron &ldquo;Camo&rdquo; De Vries</span>. I am a multi-disciplinary infrastructure architect, sound engineer, and the founder of <em>Unspoken Truths</em>.
+                        My name is <span class="text-white font-semibold">Cameron &ldquo;Camo&rdquo; De Vries</span>. I am a Sound Technician, Vibe Coder, AI Orchestrator, and the founder of <em>Unspoken Truths</em>.
                     </p>
                 </div>
                 <div class="lg:col-span-2 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
@@ -940,16 +1236,19 @@ sequenceDiagram
             <h2 class="text-3xl font-bold text-white text-center mb-12 font-mono scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">My Arsenal</h2>
             <div class="grid md:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
                 <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white font-mono mb-3">Sovereign AI Orchestration</h3>
-                    <p class="text-sm text-zinc-400">I deploy local-first, agentic swarms (using tech like Ollama, DeepSeek, and Qwen) that keep your data in your hands, not on some remote server in Silicon Valley.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#127911; SOUND TECHNICIAN</p>
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Audio Engineering</h3>
+                    <p class="text-sm text-zinc-400">FOH and monitor mixing for live events, studio recording and mixing for artists, end-to-end podcast production, and broadcast audio chains. The room sounds right.</p>
                 </div>
                 <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white font-mono mb-3">Infrastructure Architecture</h3>
-                    <p class="text-sm text-zinc-400">From custom Telegram bots to full-stack integration, I build robust, low-cost systems that scale as fast as your business does.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#9000; VIBE CODER &nbsp;&#129302; AI ORCHESTRATOR</p>
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Code &amp; AI Systems</h3>
+                    <p class="text-sm text-zinc-400">AI-assisted rapid builds that ship in days. Local-first agent swarms (Ollama, DeepSeek, Qwen), sovereign RAG pipelines, workflow automation &mdash; data stays on your machine, not Silicon Valley's.</p>
                 </div>
                 <div class="p-6 rounded-lg bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <h3 class="text-lg font-bold text-white font-mono mb-3">Technical Empowerment</h3>
-                    <p class="text-sm text-zinc-400">I audit, I automate, and I train. I don't just hand over a tool&mdash;I build a machine that works for you, 24/7.</p>
+                    <p class="text-camo-accent font-mono text-xs mb-2">&#127760; WEB DESIGNER</p>
+                    <h3 class="text-lg font-bold text-white font-mono mb-3">Web Design &amp; Handover</h3>
+                    <p class="text-sm text-zinc-400">Performance-first sites and sovereign apps &mdash; from R3,500 static builds to custom R20,000+ platforms. No plugin bloat. Full docs, training, and genuine ownership at handover.</p>
                 </div>
             </div>
         </div>
