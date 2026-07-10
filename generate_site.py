@@ -734,24 +734,6 @@ PAGES = {
                     </div>
                 </div>
 
-                <!-- 79Ratio -->
-                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://79ratio.com/" data-title="79ratio.com">
-                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
-                        <iframe src="https://79ratio.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
-                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                Preview site
-                            </span>
-                        </div>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-blue-300 bg-camo-950/80 border border-blue-700/40 px-2 py-0.5 rounded">Creative</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-white font-semibold mb-2">79Ratio</h3>
-                        <p class="text-xs text-zinc-400">Creative studio site with a distinct identity &mdash; refined layout, purposeful typography and a strong brand presence.</p>
-                    </div>
-                </div>
-
                 <!-- Beloveful -->
                 <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://beloveful.com/" data-title="beloveful.com">
                     <div class="iframe-thumb relative overflow-hidden" style="height:200px">
