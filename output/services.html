@@ -310,6 +310,36 @@
         </div>
     </section>
 
+    <!-- Site Preview Modal -->
+    <div id="site-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/85 backdrop-blur-sm p-3 md:p-6" role="dialog" aria-modal="true" aria-label="Site preview">
+        <div class="relative w-full max-w-6xl flex flex-col bg-camo-950 border border-camo-800 rounded-xl overflow-hidden shadow-2xl" style="height:88vh">
+            <!-- Modal title bar -->
+            <div class="flex items-center justify-between px-4 py-2.5 bg-camo-900 border-b border-camo-800 flex-shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-camo-accent animate-pulse"></span>
+                    <a id="modal-site-link" href="#" target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-camo-accent hover:text-camo-accentHover transition-colors truncate max-w-xs" title="Open in new tab"></a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a id="modal-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-400 hover:text-white transition-colors hidden sm:inline">Open in new tab &rarr;</a>
+                    <button id="modal-close" class="text-zinc-400 hover:text-white transition-colors p-1 rounded hover:bg-camo-800" aria-label="Close preview">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- iframe fill -->
+            <div id="modal-loading" class="absolute inset-0 top-[45px] flex flex-col items-center justify-center bg-camo-950 z-10">
+                <div class="w-8 h-8 border-2 border-camo-accent border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p class="text-xs text-zinc-500 font-mono">Loading site&hellip;</p>
+            </div>
+            <div id="modal-blocked" class="absolute inset-0 top-[45px] hidden flex-col items-center justify-center bg-camo-950 z-10 text-center px-6">
+                <svg class="w-10 h-10 text-zinc-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                <p class="text-zinc-400 text-sm mb-4">This site restricts embedding in previews.</p>
+                <a id="modal-blocked-link" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-camo-accent text-camo-950 text-sm font-bold rounded hover:bg-camo-accentHover transition-colors">Open site directly &rarr;</a>
+            </div>
+            <iframe id="modal-iframe" src="" class="w-full flex-1 border-0 bg-white" allow="fullscreen" loading="lazy"></iframe>
+        </div>
+    </div>
+
     <!-- Portfolio -->
     <section class="py-20 bg-camo-900/30 border-y border-camo-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -319,113 +349,235 @@
                     SELECTED WORK
                 </div>
                 <h2 class="text-3xl font-bold text-white mb-4">Past Builds</h2>
-                <p class="text-zinc-400 max-w-2xl mx-auto">Live sites built for real clients. Click any card to open the project.</p>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Live sites built for real clients. Click any card to preview and interact with the site.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
 
-                <!-- CamoDevOps Online — full case study -->
-                <a href="https://camodevops.online" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-camo-accent/20 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-camo-accent text-sm">camodevops.online</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-camo-accent bg-camo-accent/10 border border-camo-accent/20 px-2 py-0.5 rounded">Static</span>
+                <!-- CamoDevOps Online -->
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://camodevops.online" data-title="camodevops.online">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://camodevops.online" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-camo-accent bg-camo-950/80 border border-camo-accent/30 px-2 py-0.5 rounded">Static</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-white font-semibold mb-3">CamoDevOps Online</h3>
-                        <div class="space-y-1.5 text-xs text-zinc-400 flex-grow">
-                            <p><span class="text-zinc-300 font-semibold">Challenge:</span> Sovereign portfolio site, globally fast, zero runtime cost.</p>
-                            <p><span class="text-zinc-300 font-semibold">Stack:</span> Python generator &middot; TailwindCSS &middot; Cloudflare Workers edge.</p>
-                            <p><span class="text-zinc-300 font-semibold">Result:</span> 9-page site, &lt;2 min deploys, R0 hosting, 100% uptime.</p>
-                        </div>
-                        <div class="flex flex-wrap gap-1 mt-4">
-                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Cloudflare</span>
-                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">Python</span>
-                            <span class="text-xs font-mono text-camo-accent bg-camo-accent/10 px-2 py-0.5 rounded">TailwindCSS</span>
+                        <h3 class="text-white font-semibold mb-2">CamoDevOps Online</h3>
+                        <div class="space-y-1 text-xs text-zinc-400 flex-grow">
+                            <p><span class="text-zinc-300 font-semibold">Challenge:</span> Sovereign portfolio, globally fast, zero runtime cost.</p>
+                            <p><span class="text-zinc-300 font-semibold">Stack:</span> Python &middot; TailwindCSS &middot; Cloudflare Workers.</p>
+                            <p><span class="text-zinc-300 font-semibold">Result:</span> 9 pages, &lt;2 min deploys, R0 hosting.</p>
                         </div>
                     </div>
-                </a>
+                </div>
 
                 <!-- Rave Bingochi -->
-                <a href="https://www.ravebingochi.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-purple-900/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-purple-300 text-sm">ravebingochi.com</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-purple-300 bg-purple-900/30 border border-purple-700/30 px-2 py-0.5 rounded">Entertainment</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.ravebingochi.com/" data-title="ravebingochi.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.ravebingochi.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-purple-300 bg-camo-950/80 border border-purple-700/40 px-2 py-0.5 rounded">Entertainment</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">Rave Bingochi</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">Entertainment &amp; creative brand site. Bold visual identity with high-impact design built to capture the energy of the brand.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">Entertainment &amp; creative brand site. Bold visual identity built to capture the energy of the brand.</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- IRL Events -->
-                <a href="https://www.irlevents.fun/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-orange-900/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-orange-300 text-sm">irlevents.fun</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-orange-300 bg-orange-900/30 border border-orange-700/30 px-2 py-0.5 rounded">Events</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.irlevents.fun/" data-title="irlevents.fun">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.irlevents.fun/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-orange-300 bg-camo-950/80 border border-orange-700/40 px-2 py-0.5 rounded">Events</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">IRL Events</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">Event company web presence &mdash; designed to convert visitors into bookings with clear calls to action and a clean, energetic layout.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">Event company web presence designed to convert visitors into bookings with clear CTAs and an energetic layout.</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- 79Ratio -->
-                <a href="https://79ratio.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-blue-900/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-blue-300 text-sm">79ratio.com</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-blue-300 bg-blue-900/30 border border-blue-700/30 px-2 py-0.5 rounded">Creative</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://79ratio.com/" data-title="79ratio.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://79ratio.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-blue-300 bg-camo-950/80 border border-blue-700/40 px-2 py-0.5 rounded">Creative</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">79Ratio</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">Creative studio or agency site with a distinct identity &mdash; refined layout, purposeful typography and a strong brand presence.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">Creative studio site with a distinct identity &mdash; refined layout, purposeful typography and a strong brand presence.</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- Beloveful -->
-                <a href="https://beloveful.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-rose-900/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-rose-300 text-sm">beloveful.com</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-rose-300 bg-rose-900/30 border border-rose-700/30 px-2 py-0.5 rounded">Lifestyle</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://beloveful.com/" data-title="beloveful.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://beloveful.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-rose-300 bg-camo-950/80 border border-rose-700/40 px-2 py-0.5 rounded">Lifestyle</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">Beloveful</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">Lifestyle and lifestyle brand site built with warmth and elegance &mdash; designed to build emotional connection with the audience from the first scroll.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">Lifestyle brand site built with warmth and elegance &mdash; designed to build emotional connection from the first scroll.</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- Buddies Worldwide -->
-                <a href="https://buddiesworldwide.store/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-green-900/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-green-300 text-sm">buddiesworldwide.store</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-green-300 bg-green-900/30 border border-green-700/30 px-2 py-0.5 rounded">E-commerce</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://buddiesworldwide.store/" data-title="buddiesworldwide.store">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://buddiesworldwide.store/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-green-300 bg-camo-950/80 border border-green-700/40 px-2 py-0.5 rounded">E-commerce</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">Buddies Worldwide</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">E-commerce store built for global reach &mdash; clean product layout, optimized for conversion, with a playful and community-driven brand voice.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">E-commerce store built for global reach &mdash; clean product layout, optimised for conversion with a community-driven brand voice.</p>
                     </div>
-                </a>
+                </div>
 
                 <!-- Yong's Security -->
-                <a href="https://www.yongssecuriecom.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300">
-                    <div class="h-40 bg-gradient-to-br from-zinc-700/40 via-camo-800 to-camo-950 flex items-center justify-center relative">
-                        <span class="font-mono text-zinc-300 text-sm">yongssecuriecom.com</span>
-                        <span class="absolute top-3 right-3 text-xs font-mono text-zinc-300 bg-zinc-700/30 border border-zinc-600/30 px-2 py-0.5 rounded">Security</span>
+                <div class="portfolio-card group flex flex-col rounded-xl overflow-hidden bg-camo-950 border border-camo-800 hover:border-camo-accent/60 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] transition-all duration-300 cursor-pointer" data-url="https://www.yongssecuriecom.com/" data-title="yongssecuriecom.com">
+                    <div class="iframe-thumb relative overflow-hidden" style="height:200px">
+                        <iframe src="https://www.yongssecuriecom.com/" class="absolute top-0 left-0 border-0 pointer-events-none" style="width:1440px;height:900px;transform-origin:0 0" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        <div class="thumb-overlay absolute inset-0 bg-camo-950/0 group-hover:bg-camo-950/60 transition-all duration-300 flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-4 py-2 bg-camo-accent text-camo-950 text-sm font-bold rounded-md shadow-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Preview site
+                            </span>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-mono text-zinc-300 bg-camo-950/80 border border-zinc-600/40 px-2 py-0.5 rounded">Security</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-white font-semibold mb-2">Yong&apos;s Security</h3>
-                        <p class="text-xs text-zinc-400 flex-grow">Corporate security company site &mdash; professional, trustworthy design that communicates reliability and authority to potential clients from first glance.</p>
-                        <p class="text-xs text-camo-accent mt-3 group-hover:underline">Visit site &rarr;</p>
+                        <p class="text-xs text-zinc-400">Corporate security company site &mdash; professional, trustworthy design that communicates reliability to potential clients from first glance.</p>
                     </div>
-                </a>
+                </div>
 
             </div>
             <p class="text-center text-xs text-zinc-600 font-mono mt-8">Portfolio grows with every build. <a href="audit.html" class="text-camo-accent hover:underline">Start your project &rarr;</a></p>
         </div>
     </section>
+
+    <!-- Portfolio interaction scripts -->
+    <script>
+    (function () {
+        var SCALE_W = 1440;
+
+        function scaleAll() {
+            document.querySelectorAll('.iframe-thumb').forEach(function (wrap) {
+                var scale = wrap.offsetWidth / SCALE_W;
+                var iframe = wrap.querySelector('iframe');
+                if (iframe) iframe.style.transform = 'scale(' + scale + ')';
+            });
+        }
+        scaleAll();
+        window.addEventListener('resize', scaleAll);
+
+        var modal = document.getElementById('site-modal');
+        var modalIframe = document.getElementById('modal-iframe');
+        var modalLink = document.getElementById('modal-site-link');
+        var modalExtLink = document.getElementById('modal-ext-link');
+        var modalBlockedLink = document.getElementById('modal-blocked-link');
+        var modalLoading = document.getElementById('modal-loading');
+        var modalBlocked = document.getElementById('modal-blocked');
+        var modalClose = document.getElementById('modal-close');
+
+        function openModal(url, title) {
+            modalLink.textContent = title;
+            modalLink.href = url;
+            modalExtLink.href = url;
+            modalBlockedLink.href = url;
+            modalLoading.style.display = 'flex';
+            modalBlocked.style.display = 'none';
+            modalIframe.src = '';
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            var timer = setTimeout(function () {
+                try {
+                    var doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
+                    if (!doc || doc.body === null || doc.body.innerHTML === '') {
+                        modalLoading.style.display = 'none';
+                        modalBlocked.style.display = 'flex';
+                    }
+                } catch (e) {
+                    modalLoading.style.display = 'none';
+                    modalBlocked.style.display = 'flex';
+                }
+            }, 4000);
+
+            modalIframe.onload = function () {
+                clearTimeout(timer);
+                try {
+                    var doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
+                    if (!doc || !doc.body || doc.body.innerHTML === '') {
+                        modalLoading.style.display = 'none';
+                        modalBlocked.style.display = 'flex';
+                    } else {
+                        modalLoading.style.display = 'none';
+                    }
+                } catch (e) {
+                    modalLoading.style.display = 'none';
+                    modalBlocked.style.display = 'flex';
+                }
+            };
+            modalIframe.src = url;
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            modalIframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.portfolio-card').forEach(function (card) {
+            card.addEventListener('click', function () {
+                openModal(card.dataset.url, card.dataset.title);
+            });
+            card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') openModal(card.dataset.url, card.dataset.title);
+            });
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+    })();
+    </script>
 
     <!-- CTA -->
     <section class="py-20">
