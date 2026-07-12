@@ -103,6 +103,14 @@ export default function App() {
   const dataRef = useRef(null);
   const saveTimer = useRef(null);
   const chatEnd = useRef(null);
+  /* per-view form state — must stay above the !data early return so the hook order never changes */
+  const [nc, setNc] = useState({ name: "", email: "", hat: "Lead" });
+  const [dragId, setDragId] = useState(null);
+  const [nd, setNd] = useState({ title: "", value: "" });
+  const [np, setNp] = useState("");
+  const [clockProj, setClockProj] = useState("");
+  const [ng, setNg] = useState("");
+  const [gearProj, setGearProj] = useState({});
 
   /* ---- load ---- */
   useEffect(() => {
@@ -150,7 +158,7 @@ export default function App() {
       n.tasks.push({ id: uid(), projectId, title: t, status: "todo", due: new Date(base + (i + 2) * 86400000).toISOString().slice(0, 10), assignee: "", ts: now() }));
   }
   function execTool(n, tool, input, who) {
-    const find = (arr, key, q) => arr.find(x => (x[key] || "").toLowerCase().includes((q || "").toLowerCase()));
+    const find = (arr, key, q) => q ? arr.find(x => (x[key] || "").toLowerCase().includes(q.toLowerCase())) : undefined;
     if (tool === "create_contact") {
       n.contacts.push({ id: uid(), name: input.name, email: input.email || "", hats: [input.hat || "Lead"], star: false, ts: now() });
       return `Contact "${input.name}" created`;
@@ -334,7 +342,6 @@ export default function App() {
   );
 
   /* ---- Contacts ---- */
-  const [nc, setNc] = useState({ name: "", email: "", hat: "Lead" });
   const Contacts = () => (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2 items-center" style={{ background: C.panel, border: `1px solid ${C.line}`, borderRadius: 4, padding: 12 }}>
@@ -361,8 +368,6 @@ export default function App() {
   );
 
   /* ---- Pipeline ---- */
-  const [dragId, setDragId] = useState(null);
-  const [nd, setNd] = useState({ title: "", value: "" });
   const Pipeline = () => (
     <div className="flex flex-col gap-4 h-full">
       <div className="flex gap-2 items-center" style={{ background: C.panel, border: `1px solid ${C.line}`, borderRadius: 4, padding: 12 }}>
@@ -398,7 +403,6 @@ export default function App() {
   );
 
   /* ---- Projects ---- */
-  const [np, setNp] = useState("");
   const proj = data.projects.find(p => p.id === openProject);
   const Projects = () => proj ? <ProjectDetail p={proj} /> : (
     <div className="flex flex-col gap-4">
@@ -573,7 +577,6 @@ export default function App() {
     }, { who: "you", action: "logged session", detail: fmtT(secs) });
     setPresent(false);
   }
-  const [clockProj, setClockProj] = useState("");
   const Clock = () => (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col items-center gap-4" style={{ background: C.panel, border: `1px solid ${C.line}`, borderRadius: 4, padding: 36 }}>
@@ -609,8 +612,6 @@ export default function App() {
   );
 
   /* ---- Gear ---- */
-  const [ng, setNg] = useState("");
-  const [gearProj, setGearProj] = useState({});
   const Gear = () => (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2" style={{ background: C.panel, border: `1px solid ${C.line}`, borderRadius: 4, padding: 12 }}>
