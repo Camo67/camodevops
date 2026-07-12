@@ -4,12 +4,19 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "camodevops",
   "compatibility_date": "2026-06-16",
+  "main": "sos-router.js",
   "assets": {
     "directory": "./output",
+    "binding": "ASSETS",
     // Serve pretty URLs (/architecture -> architecture.html) and a 404 page.
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
+  // Path overlay on the Command Center's custom domain: only /app* comes to
+  // this worker; sos-camodevops keeps every other path on that hostname.
+  "routes": [
+    { "pattern": "sos.camodevops.online/app*", "zone_name": "camodevops.online" }
+  ],
   "observability": {
     "enabled": false,
     "head_sampling_rate": 1,

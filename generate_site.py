@@ -5,6 +5,7 @@ Outputs a structured directory of HTML files with shared navigation and footer.
 """
 
 import os
+import shutil
 
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -1366,5 +1367,12 @@ for filename, page_data in PAGES.items():
 
     with open(os.path.join(OUTPUT_DIR, filename), "w", encoding="utf-8") as f:
         f.write(html)
+
+# CamoFlow OS build → served at sos.camodevops.online/app (see sos-router.js)
+CFOS_BUILD = os.path.join(os.path.dirname(OUTPUT_DIR), "camoflow-os", "dist", "index.html")
+if os.path.exists(CFOS_BUILD):
+    os.makedirs(os.path.join(OUTPUT_DIR, "sos"), exist_ok=True)
+    shutil.copyfile(CFOS_BUILD, os.path.join(OUTPUT_DIR, "sos", "index.html"))
+    print("Copied CamoFlow OS build to output/sos/index.html")
 
 print(f"Successfully generated multi-page website in: {OUTPUT_DIR}")
