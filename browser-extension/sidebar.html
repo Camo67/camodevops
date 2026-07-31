@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CamoDevOps AI</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0f1419; color: #e6ecef; font-family: 'Inter', system-ui, sans-serif; height: 100vh; display: flex; flex-direction: column; }
+    #header { padding: 12px 14px; border-bottom: 1px solid #243039; display: flex; align-items: center; gap: 10px; }
+    #header .logo { font-size: 18px; }
+    #header .title { font-weight: 600; font-size: 14px; }
+    #header .sub { color: #5c6a75; font-size: 11px; }
+    #header .settings-btn { margin-left: auto; background: transparent; border: 1px solid #243039; color: #5c6a75; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 12px; }
+    #header .settings-btn:hover { color: #8b98a5; border-color: #3db8c4; }
+    #modes { padding: 8px 12px; border-bottom: 1px solid #1a232c; display: flex; gap: 6px; flex-wrap: wrap; }
+    .mode-btn { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px; cursor: pointer; border: 1px solid #243039; background: transparent; color: #5c6a75; }
+    .mode-btn.active { background: #1f4d52; border-color: #3db8c4; color: #3db8c4; }
+    #messages { flex: 1; overflow-y: auto; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .msg { max-width: 90%; padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+    .msg.user { align-self: flex-end; background: #1f4d52; border: 1px solid #3db8c4; color: #3db8c4; }
+    .msg.ai { align-self: flex-start; background: #1a232c; border: 1px solid #243039; color: #e6ecef; }
+    .msg.err { background: #3b1a1a; border-color: #c96a5d; color: #c96a5d; }
+    .meta { font-size: 10px; color: #5c6a75; margin-top: 3px; font-family: monospace; }
+    .empty { color: #5c6a75; font-size: 13px; text-align: center; margin-top: 60px; line-height: 1.6; }
+    .thinking { color: #5c6a75; font-size: 12px; font-style: italic; }
+    #input-row { padding: 10px 12px; border-top: 1px solid #243039; display: flex; gap: 8px; }
+    #input { flex: 1; background: #0f1419; border: 1px solid #243039; color: #e6ecef; font-family: inherit; font-size: 13px; padding: 8px 10px; border-radius: 6px; outline: none; resize: none; }
+    #input:focus { border-color: #3db8c4; }
+    #send { background: #1f4d52; border: 1px solid #3db8c4; color: #3db8c4; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    #send:disabled { opacity: 0.3; cursor: default; }
+    /* Settings overlay */
+    #settings { display: none; position: absolute; inset: 0; background: #0f1419; z-index: 10; flex-direction: column; padding: 16px; gap: 14px; overflow-y: auto; }
+    #settings.visible { display: flex; }
+    #settings h2 { font-size: 14px; color: #e6ecef; border-bottom: 1px solid #243039; padding-bottom: 8px; }
+    .field-group label { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #5c6a75; display: block; margin-bottom: 4px; }
+    .field-group input { width: 100%; background: #151c23; border: 1px solid #243039; color: #e6ecef; font-family: monospace; font-size: 12px; padding: 7px 10px; border-radius: 4px; outline: none; }
+    .field-group input:focus { border-color: #3db8c4; }
+    .hint { font-size: 11px; color: #5c6a75; margin-top: 3px; }
+    #save-btn { background: #1f4d52; border: 1px solid #3db8c4; color: #3db8c4; padding: 9px 16px; border-radius: 6px; cursor: pointer; font-family: monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    #save-btn:hover { background: #244e53; }
+    #save-status { font-size: 12px; color: #7a9e7e; }
+    #back-btn { background: transparent; border: 1px solid #243039; color: #8b98a5; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-top: auto; }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <span class="logo">✦</span>
+    <div>
+      <div class="title">CamoDevOps AI</div>
+      <div class="sub">Local-first · smart escalation</div>
+    </div>
+    <button class="settings-btn" id="open-settings">⚙ Keys</button>
+  </div>
+
+  <div id="modes">
+    <button class="mode-btn active" data-mode="chat">Chat</button>
+    <button class="mode-btn" data-mode="reason">Deep reason</button>
+    <button class="mode-btn" data-mode="image">Image</button>
+    <button class="mode-btn" data-mode="form">Form fill</button>
+    <button class="mode-btn" data-mode="plan">Plan</button>
+  </div>
+
+  <div id="messages">
+    <div class="empty">Ask anything — I'll route it to the best available AI.<br><small>Chrome window.ai · Groq · Gemini · Worker</small></div>
+  </div>
+
+  <div id="input-row">
+    <textarea id="input" rows="1" placeholder="Ask the AI…"></textarea>
+    <button id="send">➤</button>
+  </div>
+
+  <!-- Settings panel -->
+  <div id="settings">
+    <h2>⚙ API Keys</h2>
+    <div class="field-group">
+      <label>Google AI API Key</label>
+      <input type="password" id="key-google" placeholder="AIza..." autocomplete="off" />
+      <div class="hint">Used for image generation and Gemini fallback</div>
+    </div>
+    <div class="field-group">
+      <label>Groq API Key</label>
+      <input type="password" id="key-groq" placeholder="gsk_..." autocomplete="off" />
+      <div class="hint">Fast Llama 3.3 + DeepSeek R1 for reasoning</div>
+    </div>
+    <div class="field-group">
+      <label>CamoDevOps Worker URL</label>
+      <input type="text" id="key-worker" placeholder="https://camodevops.workers.dev" autocomplete="off" />
+      <div class="hint">Your deployed Cloudflare Worker — last-resort fallback</div>
+    </div>
+    <button id="save-btn">Save keys</button>
+    <div id="save-status"></div>
+    <button id="back-btn">← Back to chat</button>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>

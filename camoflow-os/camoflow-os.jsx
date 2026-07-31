@@ -201,6 +201,62 @@ export default function App() {
     return "Unknown tool";
   }
 
+  /* ============================== AI CONFIG (set keys to enable routing) ============================== */
+  const AI_KEYS = {
+    anthropic: "",        // set your Anthropic API key here
+    google: "",           // set your Google AI (Gemini) API key here
+    groq: "",             // set your Groq API key here
+    openrouter: "",       // set your OpenRouter API key here
+  };
+
+  /* ============================== MODEL ROUTER ============================== */
+  function pickModel(msgs) {
+    const last = msgs.filter(m => m.role === "user").slice(-1)[0];
+    const text = typeof last?.content === "string" ? last.content.toLowerCase() : "";
+    const isImageTask = /\b(image|picture|draw|generate|illustrat|photo|render|visual)\b/.test(text);
+    const isReasoningTask = /\b(plan|reason|think|analyse|analyze|deep|complex|strateg|fill.?out|application|form)\b/.test(text);
+    const isShort = text.length < 200;
+
+    if (isImageTask && AI_KEYS.google) {
+      return { provider: "google", model: "gemini-2.0-flash-exp", baseUrl: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${AI_KEYS.google}` };
+    }
+    if (isReasoningTask && AI_KEYS.groq) {
+      return { provider: "groq", model: "llama-3.3-70b-versatile", baseUrl: "https://api.groq.com/openai/v1/chat/completions" };
+    }
+    if (isShort && AI_KEYS.openrouter) {
+      return { provider: "openrouter", model: "meta-llama/llama-3.2-3b-instruct:free", baseUrl: "https://openrouter.ai/api/v1/chat/completions" };
+    }
+    // default: Anthropic Claude
+    return { provider: "anthropic", model: "claude-sonnet-4-6", baseUrl: "https://api.anthropic.com/v1/messages" };
+  }
+
+  async function callModel(route, system, msgs, tools) {
+    const { provider, model, baseUrl } = route;
+    console.log(`[kyra router] provider=${provider} model=${model}`);
+    if (provider === "anthropic" || !AI_KEYS[provider]) {
+      const key = AI_KEYS.anthropic;
+      const headers = { "Content-Type": "application/json", "anthropic-version": "2023-06-01", ...(key ? { "x-api-key": key } : {}) };
+      const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers, body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 1000, system, messages: msgs, tools }) });
+      return res.json();
+    }
+    if (provider === "google") {
+      const body = { contents: msgs.map(m => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: typeof m.content === "string" ? m.content : JSON.stringify(m.content) }] })), systemInstruction: { parts: [{ text: system }] } };
+      const res = await fetch(baseUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const raw = await res.json();
+      const text = raw.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      return { content: [{ type: "text", text }], stop_reason: "end_turn" };
+    }
+    if (provider === "groq" || provider === "openrouter") {
+      const headers = { "Content-Type": "application/json", Authorization: `Bearer ${AI_KEYS[provider]}` };
+      const body = { model, messages: [{ role: "system", content: system }, ...msgs.map(m => ({ role: m.role, content: typeof m.content === "string" ? m.content : JSON.stringify(m.content) }))], max_tokens: 1000 };
+      const res = await fetch(baseUrl, { method: "POST", headers, body: JSON.stringify(body) });
+      const raw = await res.json();
+      const text = raw.choices?.[0]?.message?.content || raw.error?.message || "No response";
+      return { content: [{ type: "text", text }], stop_reason: "end_turn" };
+    }
+    throw new Error(`Unknown provider: ${provider}`);
+  }
+
   /* ============================== KYRA HARNESS ============================== */
   const snapshot = () => {
     const d = dataRef.current;
@@ -230,11 +286,8 @@ export default function App() {
     const system = `You are Kyra, the operations agent inside CamoFlow OS — the one-stack business command for ${dataRef.current.settings.studio} (Cape Town). The whole app follows one journey: Inquiry → Deal → Booked Project → Deliver → Paid. Rules: (1) call get_snapshot before answering anything about current state; (2) write tools NEVER execute directly — they queue a proposal in the human Review Queue (the Policy Gate). After queueing, tell the human exactly what is waiting for approval. (3) Be terse, action-first, zero filler. Currency: ${dataRef.current.settings.currency}.`;
     try {
       for (let i = 0; i < 6; i++) {
-        const res = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 1000, system, messages: msgs, tools: TOOLS }),
-        });
-        const out = await res.json();
+        const route = pickModel(msgs);
+        const out = await callModel(route, system, msgs, TOOLS);
         if (out.error) { up(n => n.chat.push({ id: uid(), role: "kyra", text: `API error: ${out.error.message || "unknown"}`, err: true })); break; }
         msgs.push({ role: "assistant", content: out.content });
         const textOut = (out.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
