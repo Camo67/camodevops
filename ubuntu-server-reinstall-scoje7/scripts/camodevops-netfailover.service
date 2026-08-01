@@ -1,0 +1,12 @@
+[Unit]
+Description=camodevops network failover watchdog (Calico-safe)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/camo/camodevops/ubuntu-server-reinstall-scoje7/scripts/netfailover.sh
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
