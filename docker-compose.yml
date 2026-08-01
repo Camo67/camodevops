@@ -28,7 +28,7 @@ services:
   # ═══════════════════════════════════════════════════════════════
   harness:
     build:
-      context: /home/bertha/agentic-harness
+      context: ${HARNESS_DIR:-/home/bertha/agentic-harness}
       dockerfile: Dockerfile
     container_name: camodevops-harness
     restart: unless-stopped
