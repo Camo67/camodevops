@@ -1,6 +1,6 @@
-# Ubuntu Server Reinstall — camoflo box
+# Ubuntu Server Reinstall — camodevops box
 
-Runbook for a clean Ubuntu Server reinstall on the `camoflo` machine (192.168.18.8). Covers the full installer flow, post-install hardening, and bringing the Docker stack back up.
+Runbook for a clean Ubuntu Server reinstall on the `camodevops` machine (192.168.18.8). Covers the full installer flow, post-install hardening, and bringing the Docker stack back up.
 
 ---
 
@@ -8,7 +8,7 @@ Runbook for a clean Ubuntu Server reinstall on the `camoflo` machine (192.168.18
 
 | Hostname | IP | Role |
 |---|---|---|
-| `camoflo` | 192.168.18.8 | Primary server — runs Docker stack (this box) |
+| `camodevops` | 192.168.18.8 | Primary server — runs Docker stack (this box) |
 | `cam-HP-ProDesk-600-G3-MT` | 192.168.18.195 | Desktop workstation |
 | `bertha` | 192.168.18.174 | Dev workstation — agentic harness source lives here |
 
@@ -29,7 +29,7 @@ Use the entire disk with LVM (default). Enable LVM so you can grow volumes later
 
 ### User account
 - Username: `camo67`
-- Hostname: `camoflo`
+- Hostname: `camodevops`
 
 ### SSH setup — import from GitHub
 During the **"SSH Setup"** screen:
@@ -55,7 +55,34 @@ Let the installer complete and remove the USB when prompted. The system reboots 
 
 ---
 
-## 2. Verify boot
+## 2. First boot — what to expect
+
+Cloud-init runs on first boot and takes ~16 minutes (978 seconds observed). You will see:
+
+```
+[ OK ] Finished cloud-final.service - Cloud-init v. 26.1-0ubuntu2 finished at ...
+       DataSource DataSourceNone. Up 978.94 seconds
+```
+
+`DataSourceNone` is **expected** for a bare-metal install — it just means cloud-init found no cloud metadata endpoint (AWS, GCP, etc.).
+
+**SSH host keys are generated** during this first boot. Record the fingerprints now for future verification:
+
+| Type | Fingerprint |
+|---|---|
+| RSA 3072 | `SHA256:wWliCgDvSs9wc8rz0/KKJ7W1I4mXOX6c0M3XXNcAQ1I` |
+| ECDSA 256 | `SHA256:pJ6bQFX8kaJ2Mo1otFMpcV+nR3mKyc44kiolqExb0AU` |
+| ED25519 256 | `SHA256:bDavOARU1uVRiNDwCn6LUZAkvjIj/JxEqaY/5Wfad5s` |
+
+**`ath9k AER` message** — you may see lines like:
+
+```
+ath9k 0000:01:00.0: AER:  Error of this Agent is reported first
+```
+
+This is a harmless PCIe Advanced Error Reporting init message from the Atheros WiFi driver. It is not a functional error; the network interface works normally.
+
+## 3. Verify boot
 
 SSH from another machine on the LAN:
 
@@ -65,11 +92,18 @@ hostname -I
 # expected: 192.168.18.8 100.x.x.x 10.0.3.1 ...
 ```
 
+Verify the SSH host key fingerprint matches the table above:
+
+```bash
+ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
+# SHA256:bDavOARU1uVRiNDwCn6LUZAkvjIj/JxEqaY/5Wfad5s root@camodevops (ED25519)
+```
+
 The `10.0.3.1` address indicates LXD is present from the default Ubuntu Server install. That's fine — Docker runs alongside it.
 
 ---
 
-## 3. Run the setup script
+## 4. Run the setup script
 
 ```bash
 # Clone the repo first (HTTPS — no key needed for public read)
@@ -91,7 +125,7 @@ The script handles:
 
 ---
 
-## 4. Configure secrets
+## 5. Configure secrets
 
 ```bash
 nano ~/camodevops/.env
@@ -108,9 +142,9 @@ Fill in every blank value. The critical ones for the stack to start:
 
 ---
 
-## 5. Bring the agentic harness onto this machine
+## 6. Bring the agentic harness onto this machine
 
-The harness source previously lived at `/home/bertha/agentic-harness`. On a fresh camoflo install, clone it locally:
+The harness source previously lived at `/home/bertha/agentic-harness`. On a fresh camodevops install, clone it locally:
 
 ```bash
 git clone <harness-repo-url> ~/agentic-harness
@@ -120,7 +154,7 @@ Then set `HARNESS_DIR=~/agentic-harness` (or the absolute path) in `.env`. The `
 
 ---
 
-## 6. SSL certificates
+## 7. SSL certificates
 
 **Option A — Let's Encrypt (recommended)**
 
@@ -150,7 +184,7 @@ Place your certificates at:
 
 ---
 
-## 7. Build and start the Docker stack
+## 8. Build and start the Docker stack
 
 ```bash
 cd ~/camodevops
@@ -171,7 +205,7 @@ curl http://localhost:8080/health
 
 ---
 
-## 8. Post-start checks
+## 9. Post-start checks
 
 ```bash
 # All four containers running?
@@ -189,7 +223,7 @@ sudo fail2ban-client status sshd
 
 ---
 
-## 9. Re-register webhooks
+## 10. Re-register webhooks
 
 After the server is live at its public IP/domain:
 

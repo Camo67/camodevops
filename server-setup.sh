@@ -18,7 +18,7 @@ die()     { echo -e "${RED}[FAIL]${NC} $*" >&2; exit 1; }
 
 echo ""
 echo "╔══════════════════════════════════════════════╗"
-echo "║   camodevops — Server Setup (camoflo box)    ║"
+echo "║  camodevops — Server Setup (camodevops box)  ║"
 echo "╚══════════════════════════════════════════════╝"
 echo ""
 
