@@ -106,6 +106,23 @@ sudo microk8s kubectl describe node camoflo | tail -30
 
 ---
 
+## Network partitioning
+
+If `camodevops` is on a different network (e.g. a mobile hotspot at `10.11.229.x`) the cluster is **partitioned** — nodes on `192.168.18.x` cannot reach the control-plane. Symptoms: all worker nodes go NotReady, API server unreachable from other LAN machines.
+
+Fix: reconnect camodevops to the home LAN (`VC-2508-59`):
+
+```bash
+sudo nmcli connection up "VC-2508-59"
+# verify
+hostname -I   # should include 192.168.18.187
+sudo microk8s kubectl get nodes
+```
+
+The hotspot connection is fine for internet/SSH from outside, but always keep the wired or home-WiFi link up for cluster traffic.
+
+---
+
 ## Mobile node (`camoflo`) notes
 
 - `camoflo` at `192.168.18.8` is a mobile device running MicroK8s
