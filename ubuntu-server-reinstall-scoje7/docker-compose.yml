@@ -1,0 +1,22 @@
+# docker-compose.yml — camodevops supporting services
+#
+# STANCE (per spec):
+#   * Hermes Agent runs NATIVELY on the host (this machine). It is NOT containerized.
+#     There is no official Hermes Docker image — do not add a fake one. The agent
+#     is already running here and is driven over Telegram.
+#   * Ollama is intentionally NOT dockerized (per spec). Run it natively if you
+#     want a local model server.
+#
+# This file is a valid skeleton. Add the real services you want below.
+# Nothing is enabled by default so `docker compose up` is a no-op until you decide.
+
+version: "3.8"
+
+services:
+  # Example template — uncomment and adapt:
+  # whoami:
+  #   image: traefik/whoami:latest
+  #   ports:
+  #     - "8080:80"
+  #
+  # (Hermes + Ollama stay native on the host, per spec — not listed here.)

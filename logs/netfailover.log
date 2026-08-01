@@ -1,0 +1,20 @@
+2026-08-01 21:55:03 OK WiFi=VC-2508-59 -> gateway reachable
+2026-08-01 21:55:30 OK WiFi=VC-2508-59 -> gateway reachable
+2026-08-01 21:56:36 connectivity lost on 'VC-2508-59' (wired=); attempting roam
+2026-08-01 21:56:36 roaming WiFi -> VC-2508-59
+2026-08-01 21:56:45 roaming WiFi -> Redmi Note 13 Pro
+2026-08-01 21:56:54 WARN: could not establish connectivity on any interface
+2026-08-01 21:57:36 connectivity lost on 'Redmi Note 13 Pro' (wired=); attempting roam
+2026-08-01 21:57:36 roaming WiFi -> VC-2508-59
+2026-08-01 21:57:42 roaming WiFi -> Redmi Note 13 Pro
+2026-08-01 21:57:49 WARN: could not establish connectivity on any interface
+2026-08-01 21:58:35 OK WiFi=Redmi Note 13 Pro -> internet reachable
+2026-08-01 21:59:36 OK WiFi=Redmi Note 13 Pro -> internet reachable
+2026-08-01 22:00:44 connectivity lost on 'Redmi Note 13 Pro' (wired=); attempting roam
+2026-08-01 22:00:45 roaming WiFi -> VC-2508-59
+2026-08-01 22:00:56 roaming WiFi -> Redmi Note 13 Pro
+2026-08-01 22:01:05 WARN: could not establish connectivity on any interface
+2026-08-01 22:02:01 OK WiFi=Redmi Note 13 Pro -> internet reachable
+2026-08-01 22:02:45 OK WiFi=Redmi Note 13 Pro -> internet reachable
+2026-08-01 22:03:50 OK WiFi=Redmi Note 13 Pro -> internet reachable
+2026-08-01 22:04:50 OK WiFi=Redmi Note 13 Pro -> internet reachable
