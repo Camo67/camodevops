@@ -142,7 +142,24 @@ Fill in every blank value. The critical ones for the stack to start:
 
 ---
 
-## 6. Bring the agentic harness onto this machine
+## 6. Verify Hermes is reachable
+
+Hermes runs natively on the host (not in Docker). Before starting the stack, confirm it's up:
+
+```bash
+curl http://localhost:11434/api/tags
+# should list hermes3:8b (or whichever model is pulled)
+```
+
+The harness container reaches it via `host.docker.internal:11434` (wired automatically by the `extra_hosts` entry in `docker-compose.yml`). No separate Ollama Docker container is needed — the `ollama` service was removed.
+
+To pull the model if not already present:
+
+```bash
+ollama pull hermes3:8b
+```
+
+## 8. Bring the agentic harness onto this machine
 
 The harness source previously lived at `/home/bertha/agentic-harness`. On a fresh camodevops install, clone it locally:
 
@@ -154,7 +171,7 @@ Then set `HARNESS_DIR=~/agentic-harness` (or the absolute path) in `.env`. The `
 
 ---
 
-## 7. SSL certificates
+## 9. SSL certificates
 
 **Option A — Let's Encrypt (recommended)**
 
@@ -184,7 +201,7 @@ Place your certificates at:
 
 ---
 
-## 8. Build and start the Docker stack
+## 10. Build and start the Docker stack
 
 ```bash
 cd ~/camodevops
@@ -205,7 +222,7 @@ curl http://localhost:8080/health
 
 ---
 
-## 9. Post-start checks
+## 11. Post-start checks
 
 ```bash
 # All four containers running?
@@ -223,7 +240,7 @@ sudo fail2ban-client status sshd
 
 ---
 
-## 10. Re-register webhooks
+## 12. Re-register webhooks
 
 After the server is live at its public IP/domain:
 

@@ -43,29 +43,13 @@ services:
       - WHATSAPP_PHONE_NUMBER=${WHATSAPP_PHONE_NUMBER}
       - WHATSAPP_ACCESS_TOKEN=${WHATSAPP_ACCESS_TOKEN}
       - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+      # Hermes runs natively on the host — reachable via host.docker.internal
+      - OLLAMA_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-hermes3:8b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - harness-memory:/app/memory
-    networks:
-      - camodevops
-
-  # ═══════════════════════════════════════════════════════════════
-  # OLLAMA — Local LLM Engine (Optional)
-  # ═══════════════════════════════════════════════════════════════
-  ollama:
-    image: ollama/ollama:latest
-    container_name: camodevops-ollama
-    restart: unless-stopped
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama-models:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
     networks:
       - camodevops
 
@@ -89,7 +73,6 @@ services:
 
 volumes:
   harness-memory:
-  ollama-models:
 
 networks:
   camodevops:
