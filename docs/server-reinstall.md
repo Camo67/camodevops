@@ -6,11 +6,19 @@ Runbook for a clean Ubuntu Server reinstall on the `camodevops` machine (192.168
 
 ## Network topology
 
-| Hostname | IP | Role |
+`camodevops` has two NICs — wired and WiFi — both on the same subnet. All devices are on `192.168.18.0/24`.
+
+| IP | Host | Role |
 |---|---|---|
-| `camodevops` | 192.168.18.8 | Primary server — runs Docker stack (this box) |
-| `cam-HP-ProDesk-600-G3-MT` | 192.168.18.195 | Desktop workstation |
-| `bertha` | 192.168.18.174 | Dev workstation — agentic harness source lives here |
+| 192.168.18.1 | router | Gateway |
+| 192.168.18.8 | unknown | PC on LAN |
+| 192.168.18.174 | `bertha` | Dev workstation — agentic harness source |
+| 192.168.18.178 | unknown | PC on LAN |
+| 192.168.18.187 | `camodevops` | **This server — wired NIC** |
+| 192.168.18.190 | `camodevops` | **This server — WiFi NIC** |
+| 192.168.18.195 | `cam-HP-ProDesk-600-G3-MT` | Desktop workstation |
+
+SSH to this server from anywhere on the LAN using either IP (or set up a static lease on the router for .187).
 
 ---
 
