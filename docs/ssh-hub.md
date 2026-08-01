@@ -69,11 +69,11 @@ ssh-copy-id camo@192.168.18.187
 
 | IP | Host | Status |
 |---|---|---|
+| 192.168.18.8 | `camoflo` (mobile) | MicroK8s worker — enroll if SSH access needed |
 | 192.168.18.174 | `bertha` | Keys enrolled (GitHub import) |
+| 192.168.18.178 | unknown | To identify + enroll |
 | 192.168.18.187 | `camodevops` | **Server** |
 | 192.168.18.195 | `cam-HP-ProDesk-600-G3-MT` | To enroll |
-| 192.168.18.8 | unknown | To identify + enroll |
-| 192.168.18.178 | unknown | To identify + enroll |
 
 ---
 

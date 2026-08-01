@@ -1,6 +1,6 @@
 # Ubuntu Server Reinstall — camodevops box
 
-Runbook for a clean Ubuntu Server reinstall on the `camodevops` machine (192.168.18.8). Covers the full installer flow, post-install hardening, and bringing the Docker stack back up.
+Runbook for a clean Ubuntu Server reinstall on the `camodevops` machine (192.168.18.187 wired / .190 WiFi). Covers the full installer flow, post-install hardening, and bringing the Docker stack back up.
 
 ---
 
@@ -8,17 +8,17 @@ Runbook for a clean Ubuntu Server reinstall on the `camodevops` machine (192.168
 
 `camodevops` has two NICs — wired and WiFi — both on the same subnet. All devices are on `192.168.18.0/24`.
 
-| IP | Host | Role |
-|---|---|---|
-| 192.168.18.1 | router | Gateway |
-| 192.168.18.8 | unknown | PC on LAN |
-| 192.168.18.174 | `bertha` | Dev workstation — agentic harness source |
-| 192.168.18.178 | unknown | PC on LAN |
-| 192.168.18.187 | `camodevops` | **This server — wired NIC** |
-| 192.168.18.190 | `camodevops` | **This server — WiFi NIC** |
-| 192.168.18.195 | `cam-HP-ProDesk-600-G3-MT` | Desktop workstation |
+| IP | Host | Role | k8s node |
+|---|---|---|---|
+| 192.168.18.1 | router | Gateway | — |
+| 192.168.18.8 | `camoflo` | Mobile device — MicroK8s worker | node 4 |
+| 192.168.18.174 | `bertha` | Dev workstation — agentic harness source | — |
+| 192.168.18.178 | unknown | LAN host | TBD |
+| 192.168.18.187 | `camodevops` | **This server — wired NIC** | control-plane |
+| 192.168.18.190 | `camodevops` | **This server — WiFi NIC** | control-plane |
+| 192.168.18.195 | `cam-HP-ProDesk-600-G3-MT` | Desktop workstation | — |
 
-SSH to this server from anywhere on the LAN using either IP (or set up a static lease on the router for .187).
+SSH using the wired NIC (`.187`) — prefer this for k8s stability. Set a **static DHCP reservation** on the router for `.187` tied to the wired MAC so the MicroK8s node-ip never drifts across reboots.
 
 ---
 
@@ -30,7 +30,7 @@ Download the latest Ubuntu Server LTS ISO (24.04) and boot from USB.
 Accept defaults unless you need a specific locale.
 
 ### Network
-The installer detects the NIC. Let it configure via DHCP — the LAN DHCP server should hand `192.168.18.8` to this MAC. If not, set a static address here or via Netplan after install.
+The installer detects the NIC. Let it configure via DHCP — target address is `192.168.18.187` (wired). Set a static DHCP reservation on the router for this MAC before or after install so the address is always stable.
 
 ### Storage
 Use the entire disk with LVM (default). Enable LVM so you can grow volumes later.
@@ -95,9 +95,9 @@ This is a harmless PCIe Advanced Error Reporting init message from the Atheros W
 SSH from another machine on the LAN:
 
 ```bash
-ssh camo67@192.168.18.8
+ssh camo67@192.168.18.187
 hostname -I
-# expected: 192.168.18.8 100.x.x.x 10.0.3.1 ...
+# expected: 192.168.18.187 192.168.18.190 100.x.x.x ...
 ```
 
 Verify the SSH host key fingerprint matches the table above:
