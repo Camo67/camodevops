@@ -104,7 +104,29 @@ else
     success "Claude Code already installed"
 fi
 
-# ── 6. Git config ─────────────────────────────────────────────────────────────
+# ── 6. VS Code desktop ───────────────────────────────────────────────────────
+if ! command -v code &>/dev/null; then
+    info "Installing VS Code..."
+    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc \
+        | sudo gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] \
+https://packages.microsoft.com/repos/code stable main" \
+        | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq code
+    success "VS Code installed"
+else
+    success "VS Code already installed"
+fi
+
+# Install Remote SSH extension (enables editing on camodevops from this machine)
+if command -v code &>/dev/null; then
+    info "Installing Remote SSH extension..."
+    code --install-extension ms-vscode-remote.remote-ssh --force 2>/dev/null || true
+    success "Remote SSH extension installed — connect via: Remote Explorer → SSH Targets → camo"
+fi
+
+# ── 7. Git config ─────────────────────────────────────────────────────────────
 info "Configuring git..."
 git config --global user.name  "camo67"
 git config --global user.email "devries.cameron20@gmail.com"
@@ -112,7 +134,7 @@ git config --global init.defaultBranch main
 git config --global pull.rebase false
 success "Git configured"
 
-# ── 7. Summary ────────────────────────────────────────────────────────────────
+# ── 8. Summary ────────────────────────────────────────────────────────────────
 echo ""
 echo "╔══════════════════════════════════════════════╗"
 echo "║         Workstation ready                    ║"
@@ -121,5 +143,7 @@ echo ""
 echo "  ssh camo                      → SSH into camodevops"
 echo "  ls $MOUNT_POINT               → browse shared files"
 echo "  claude                        → start Claude Code"
+echo "  code --remote ssh-remote+camo ~/camodevops   → open repo in VS Code Remote"
+echo "  http://$SERVER_IP:4040        → code-server (browser VS Code, if running)"
 echo ""
 success "Done."
