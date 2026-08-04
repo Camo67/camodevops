@@ -5,6 +5,9 @@
 - [ ] Choose terabyte `CamOdevOps` folder target (camodevops vs `cam` /mnt/sda2)
 - [ ] Run setup scripts live on camodevops (devtools + samba)
 - [ ] Add AI team members to `members.md`
+- [ ] **Mr Devious**: confirm handle/GitHub; run first full security pass (see team/security.md — items ⛔/⏳)
+- [ ] **Mr Devious**: verify Redis not bound to 0.0.0.0; schedule vuln scan + fail2ban eval
+- [ ] **Hermes**: add API-bus auth before any external exposure of :8000
 
 ## IN PROGRESS
 - [ ] Establish repo as AI team comms channel (this scaffold) — seeding

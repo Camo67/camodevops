@@ -4,4 +4,5 @@
 |--------|------|--------|-------|
 | @camo | Owner / DevOps | Camo67 | Drives camodevops via Telegram + Hermes agent |
 | Hermes (agent) | Automation / ops | — | Runs native on camodevops; maintains this repo, cluster, SSH hub |
-| (add members below as the AI team grows) | | | |
+| Mr Devious | Security / audit | (pending) | Assigned security-check ownership — see team/tasks.md + team/security.md. Handle/GitHub to be confirmed by @camo |
+
