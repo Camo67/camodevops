@@ -1,0 +1,59 @@
+{
+  "name": "CamOdevOps — Scam Report Intake (Phase 1)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "scam-intake",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Webhook (Report Portal)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "generate",
+        "model": "={{ $env.OLLAMA_MODEL || 'qwen2.5:1.5b' }}",
+        "prompt": "={{ $('Webhook (Report Portal)').item.json.content }}",
+        "systemPrompt": "Read file: camodevops-os/phase1/agent/ioc_extract.md (use its instructions as system prompt).",
+        "options": { "baseUrl": "={{ $env.OLLAMA_HOST || 'http://127.0.0.1:11434' }}" }
+      },
+      "name": "Ollama — IOC Extract",
+      "type": "n8n-nodes-base.ollama",
+      "typeVersion": 1,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/api/ingress/telegram",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"source\": \"terminal\",\n  \"author\": \"n8n\",\n  \"role\": \"agent\",\n  \"content\": \"IOC extracted for case\",\n  \"metadata\": {\n    \"target_agent\": \"all\",\n    \"iocs\": {{ JSON.stringify($json.output) }}\n  }\n}"
+      },
+      "name": "Publish to CCB Bus",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const iocs = $('Ollama — IOC Extract').item.json.output;\nreturn [{ json: { event: 'case_received', iocs, ts: new Date().toISOString() } }];"
+      },
+      "name": "Prep Case Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 120]
+    }
+  ],
+  "connections": {
+    "Webhook (Report Portal)": { "main": [[{ "node": "Ollama — IOC Extract", "type": "main", "index": 0 }]] },
+    "Ollama — IOC Extract": { "main": [[{ "node": "Publish to CCB Bus", "type": "main", "index": 0 }]] },
+    "Ollama — IOC Extract": { "main": [[{ "node": "Prep Case Event", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "notes": "Phase 1 MVP. OCR node + graph-db correlation + forensic-PDF are Phase 2. Consent-based, SAPS-handoff only."
+}

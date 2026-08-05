@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f1419" />
+<title>CamOdevOps — Report a Scam</title>
+<style>
+  :root { --ink:#0f1419; --teal:#3db8c4; --sage:#7a9e7e; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Inter, system-ui, sans-serif; background:var(--ink); color:#e8edf0; }
+  header { background:linear-gradient(135deg,var(--teal),var(--sage)); padding:18px; text-align:center; }
+  header h1 { margin:0; font-size:1.2rem; }
+  header p { margin:4px 0 0; font-size:.8rem; opacity:.9; }
+  main { max-width:520px; margin:0 auto; padding:16px; }
+  label { display:block; margin:14px 0 6px; font-size:.85rem; color:var(--teal); }
+  textarea, input { width:100%; padding:12px; border-radius:10px; border:1px solid #2a3440;
+    background:#161d24; color:#e8edf0; font-size:1rem; }
+  button { width:100%; margin-top:18px; padding:14px; border:0; border-radius:10px;
+    background:var(--teal); color:#04161a; font-weight:700; font-size:1rem; }
+  .note { font-size:.75rem; opacity:.7; margin-top:14px; line-height:1.4; }
+  #status { margin-top:14px; padding:10px; border-radius:8px; display:none; }
+  .ok { background:#16321f; color:#9fe6b4; }
+  .err { background:#321616; color:#e69f9f; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CamOdevOps — Report a Scam</h1>
+  <p>Free, private intake for South African scam victims</p>
+</header>
+<main>
+  <form id="report">
+    <label for="text">What happened? (paste the message, SMS, or chat)</label>
+    <textarea id="text" rows="6" required placeholder="e.g. Got a WhatsApp from +27... saying my FNB payment failed, sent R5000 to account 1234..."></textarea>
+
+    <label for="contact">Your contact (optional, only if you consent to follow-up)</label>
+    <input id="contact" type="text" placeholder="anonymous by default" />
+
+    <label class="note">Consent: By submitting, you consent to CamOdevOps processing this
+      report for intelligence and lawful handoff to SAPS. No physical recovery is performed.</label>
+    <input type="checkbox" id="consent" required /> <span style="font-size:.8rem">I consent to processing for investigation & law-enforcement handoff.</span>
+
+    <button type="submit">Submit Report</button>
+  </form>
+  <div id="status"></div>
+  <p class="note">Your report is analysed locally. We link shared phone numbers / accounts /
+    wallets across reports to find repeat scammers — then package it for the police.
+    CamOdevOps is not a replacement for opening a case at your nearest SAPS station.</p>
+</main>
+<script>
+  // Points at the n8n webhook (Phase 1). Edit WEBHOOK to your n8n host.
+  const WEBHOOK = "http://127.0.0.1:5678/webhook/scam-intake";
+  document.getElementById("report").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const s = document.getElementById("status");
+    s.style.display = "block"; s.className = "";
+    try {
+      const res = await fetch(WEBHOOK, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          content: document.getElementById("text").value,
+          contact: document.getElementById("contact").value || "anon",
+          consent: document.getElementById("consent").checked
+        })
+      });
+      if (!res.ok) throw new Error("intake error " + res.status);
+      s.className = "ok"; s.textContent = "Report received. Thank you — this helps build the case.";
+      e.target.reset();
+    } catch (err) {
+      s.className = "err"; s.textContent = "Could not reach intake service. Please try again or contact SAPS directly.";
+    }
+  });
+</script>
+</body>
+</html>
