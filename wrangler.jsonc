@@ -14,9 +14,21 @@
   },
   // Path overlay on the Command Center's custom domain: only /app* comes to
   // this worker; sos-camodevops keeps every other path on that hostname.
+  // Also handles Telegram bot webhook and mini app routes.
   "routes": [
-    { "pattern": "sos.camodevops.online/app*", "zone_name": "camodevops.online" }
+    { "pattern": "sos.camodevops.online/app*", "zone_name": "camodevops.online" },
+    { "pattern": "sos.camodevops.online/bot*", "zone_name": "camodevops.online" },
+    { "pattern": "sos.camodevops.online/webhook*", "zone_name": "camodevops.online" }
   ],
+  // Environment variables for Telegram bot
+  // TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_WEBHOOK_SECRET should be set via wrangler secret
+  "env": {
+    "production": {
+      "vars": {
+        "TELEGRAM_BOT_ACTIVE": "true"
+      }
+    }
+  },
   "observability": {
     "enabled": false,
     "head_sampling_rate": 1,

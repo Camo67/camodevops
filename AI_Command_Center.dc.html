@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>CamoFlow Command Center</title>
+  <script src="https://web.telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    :root {
+      --ink: #0f1419;
+      --teal: #3db8c4;
+      --sage: #7a9e7e;
+      --bg: #0a0d11;
+      --surface: #13171e;
+      --border: #1a1f28;
+      --text-primary: #e8eef2;
+      --text-secondary: #a0aab8;
+      --success: #4ade80;
+      --warning: #facc15;
+      --error: #ef4444;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      position: relative;
+      background: var(--bg);
+      border-radius: 40px;
+      border: 8px solid #000;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 28px;
+      background: #000;
+      border-radius: 0 0 32px 32px;
+      z-index: 10;
+    }
+
+    .status-bar {
+      background: var(--bg);
+      padding: 8px 16px;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .status-bar-left {
+      display: flex;
+      gap: 4px;
+    }
+
+    .status-bar-right {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .signal, .wifi, .battery {
+      display: inline-flex;
+      gap: 1px;
+    }
+
+    .signal span, .wifi span {
+      display: inline-block;
+      width: 2px;
+      height: 3px;
+      background: var(--text-secondary);
+    }
+
+    .signal span:nth-child(1),
+    .wifi span:nth-child(1) {
+      height: 1px;
+    }
+
+    .battery {
+      width: 20px;
+      height: 10px;
+      border: 1px solid var(--text-secondary);
+      border-radius: 2px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px;
+    }
+
+    .battery::after {
+      content: '';
+      flex: 1;
+      height: 100%;
+      background: var(--success);
+      border-radius: 1px;
+    }
+
+    .app-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .app-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .header-action {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .header-action:active {
+      background: var(--border);
+    }
+
+    .app-content {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 64px;
+    }
+
+    .tab-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      padding: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .tab-nav-item {
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab-nav-item.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+
+    .tab-nav-item:active:not(.active) {
+      background: var(--border);
+    }
+
+    .pulse {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s ease-in-out infinite;
+      margin-right: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .tab-content {
+      padding: 12px;
+    }
+
+    .section {
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+
+    .system-pulse {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .pulse-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(61, 184, 196, 0.1);
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      font-size: 20px;
+    }
+
+    .pulse-info {
+      flex: 1;
+    }
+
+    .pulse-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .pulse-status {
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .pulse-status.active {
+      color: var(--success);
+    }
+
+    .action-card {
+      padding: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .action-card:active {
+      background: var(--border);
+      border-color: var(--teal);
+      transform: scale(0.98);
+    }
+
+    .action-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(61, 184, 196, 0.1);
+      border-radius: 6px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .action-info {
+      flex: 1;
+    }
+
+    .action-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .action-desc {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .queue-item {
+      padding: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .queue-badge {
+      padding: 2px 6px;
+      background: rgba(122, 158, 126, 0.2);
+      border: 1px solid var(--sage);
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--sage);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .queue-info {
+      flex: 1;
+    }
+
+    .queue-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .queue-meta {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .chat-message {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: flex-end;
+    }
+
+    .chat-message.user {
+      justify-content: flex-end;
+    }
+
+    .chat-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(61, 184, 196, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .chat-bubble {
+      max-width: 70%;
+      padding: 8px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .chat-message.user .chat-bubble {
+      background: var(--teal);
+      color: var(--ink);
+      border-color: var(--teal);
+    }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 8px;
+      right: 8px;
+      height: 56px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      margin-bottom: 12px;
+    }
+
+    .bottom-btn {
+      flex: 1;
+      padding: 8px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .bottom-btn:active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--ink);
+    }
+
+    .sheet-modal {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px 16px 0 0;
+      padding: 12px;
+      max-height: 60%;
+      overflow-y: auto;
+      display: none;
+      z-index: 100;
+    }
+
+    .sheet-modal.active {
+      display: block;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sheet-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .close-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .close-btn:active {
+      background: var(--border);
+    }
+
+    /* Scrollbar */
+    .app-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .app-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .app-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Notch -->
+    <div class="notch"></div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>09:41</span>
+      </div>
+      <div class="status-bar-right">
+        <div class="signal">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span style="color: var(--success);">✓</span>
+      </div>
+    </div>
+
+    <!-- App Header -->
+    <div class="app-header">
+      <div class="app-title">CamoFlow</div>
+      <div class="header-action">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="19" cy="12" r="1"></circle>
+          <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <div class="tab-nav-item active">Cockpit</div>
+      <div class="tab-nav-item">Dispatch</div>
+      <div class="tab-nav-item">Leads</div>
+      <div class="tab-nav-item">Chat</div>
+      <div class="tab-nav-item">Logs</div>
+    </div>
+
+    <!-- App Content -->
+    <div class="app-content">
+      <!-- Tab: Cockpit -->
+      <div class="tab-content">
+        <div class="section">
+          <div class="system-pulse">
+            <div class="pulse-icon">⚡</div>
+            <div class="pulse-info">
+              <div class="pulse-label">System Online</div>
+              <div class="pulse-status active">
+                <span class="pulse"></span>
+                All services active
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Quick Commands</div>
+          <div class="action-card" onclick="vibrate(10)">
+            <div class="action-icon">🚀</div>
+            <div class="action-info">
+              <div class="action-title">Deploy Service</div>
+              <div class="action-desc">Launch new task</div>
+            </div>
+          </div>
+          <div class="action-card" onclick="vibrate(10)">
+            <div class="action-icon">📊</div>
+            <div class="action-info">
+              <div class="action-title">View Metrics</div>
+              <div class="action-desc">System performance</div>
+            </div>
+          </div>
+          <div class="action-card" onclick="vibrate(10)">
+            <div class="action-icon">📝</div>
+            <div class="action-info">
+              <div class="action-title">Review Queue</div>
+              <div class="action-desc">3 pending approvals</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Recent Activity</div>
+          <div class="queue-item">
+            <div class="queue-badge">API</div>
+            <div class="queue-info">
+              <div class="queue-title">v2.1.4 deployed</div>
+              <div class="queue-meta">2 min ago</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">DB</div>
+            <div class="queue-info">
+              <div class="queue-title">Backup completed</div>
+              <div class="queue-meta">18 min ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Dispatch -->
+      <div class="tab-content" style="display: none;">
+        <div class="section">
+          <div class="system-pulse">
+            <div class="pulse-icon">📡</div>
+            <div class="pulse-info">
+              <div class="pulse-label">Agent Status</div>
+              <div class="pulse-status active">
+                <span class="pulse"></span>
+                Ready to receive
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Dispatch Tasks</div>
+          <div class="action-card" onclick="vibrate(20)">
+            <div class="action-icon">📧</div>
+            <div class="action-info">
+              <div class="action-title">Email Campaign</div>
+              <div class="action-desc">Send to contacts</div>
+            </div>
+          </div>
+          <div class="action-card" onclick="vibrate(20)">
+            <div class="action-icon">📞</div>
+            <div class="action-info">
+              <div class="action-title">Call Routing</div>
+              <div class="action-desc">Distribute incoming</div>
+            </div>
+          </div>
+          <div class="action-card" onclick="vibrate(20)">
+            <div class="action-icon">🤖</div>
+            <div class="action-info">
+              <div class="action-title">Run Agent</div>
+              <div class="action-desc">Execute workflow</div>
+            </div>
+          </div>
+          <div class="action-card" onclick="vibrate(20)">
+            <div class="action-icon">📋</div>
+            <div class="action-info">
+              <div class="action-title">Create Report</div>
+              <div class="action-desc">Generate summary</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Leads -->
+      <div class="tab-content" style="display: none;">
+        <div class="section">
+          <div class="section-title">Leads Queue</div>
+          <div class="queue-item">
+            <div class="queue-badge">HOT</div>
+            <div class="queue-info">
+              <div class="queue-title">Sarah Chen - Premium</div>
+              <div class="queue-meta">just now • enterprise.com</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">WARM</div>
+            <div class="queue-info">
+              <div class="queue-title">Marcus Johnson</div>
+              <div class="queue-meta">5 min ago • tech-startup.io</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">WARM</div>
+            <div class="queue-info">
+              <div class="queue-title">Elena Rodriguez</div>
+              <div class="queue-meta">12 min ago • growth-co.net</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">COOL</div>
+            <div class="queue-info">
+              <div class="queue-title">David Park</div>
+              <div class="queue-meta">34 min ago • dev-labs.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Chat -->
+      <div class="tab-content" style="display: none;">
+        <div class="section">
+          <div class="system-pulse">
+            <div class="pulse-icon">💬</div>
+            <div class="pulse-info">
+              <div class="pulse-label">Kyra Agent</div>
+              <div class="pulse-status active">
+                <span class="pulse"></span>
+                Online
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="chat-message">
+            <div class="chat-avatar">K</div>
+            <div class="chat-bubble">Hi! I've processed 3 new leads. Ready to dispatch?</div>
+          </div>
+          <div class="chat-message user">
+            <div class="chat-bubble">Yes, prioritize hot leads first</div>
+          </div>
+          <div class="chat-message">
+            <div class="chat-avatar">K</div>
+            <div class="chat-bubble">Done! Sarah Chen routed to premium queue. Others queued accordingly.</div>
+          </div>
+          <div class="chat-message user">
+            <div class="chat-bubble">Great. Send me metrics summary</div>
+          </div>
+          <div class="chat-message">
+            <div class="chat-avatar">K</div>
+            <div class="chat-bubble">📊 Today: 12 leads → 4 qualified → 2 meetings scheduled</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Logs -->
+      <div class="tab-content" style="display: none;">
+        <div class="section">
+          <div class="section-title">Activity Log</div>
+          <div class="queue-item">
+            <div class="queue-badge">API</div>
+            <div class="queue-info">
+              <div class="queue-title">Deploy camoflow v2.1.4</div>
+              <div class="queue-meta">09:32 • 2 min duration</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">AGENT</div>
+            <div class="queue-info">
+              <div class="queue-title">Kyra processed 3 leads</div>
+              <div class="queue-meta">09:28 • 1 qualified</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">DB</div>
+            <div class="queue-info">
+              <div class="queue-title">Backup snapshot saved</div>
+              <div class="queue-meta">09:15 • 2.4GB</div>
+            </div>
+          </div>
+          <div class="queue-item">
+            <div class="queue-badge">SYSTEM</div>
+            <div class="queue-info">
+              <div class="queue-title">Health check passed</div>
+              <div class="queue-meta">09:00 • 8/8 services</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="bottom-bar">
+      <button class="bottom-btn" onclick="vibrate(30)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"></polyline>
+        </svg>
+        Send
+      </button>
+      <button class="bottom-btn" onclick="vibrate(30)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="1"></circle>
+          <path d="M12 1v6m0 6v6"></path>
+        </svg>
+        Help
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Telegram WebApp integration
+    if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+      const tg = Telegram.WebApp;
+      tg.ready();
+      tg.expand();
+      tg.setHeaderColor('#13171e');
+      tg.setBackgroundColor('#0a0d11');
+    }
+
+    function vibrate(duration) {
+      if (navigator.vibrate) {
+        navigator.vibrate(duration);
+      }
+      if (typeof Telegram !== 'undefined' && Telegram.WebApp && Telegram.WebApp.HapticFeedback) {
+        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+      }
+    }
+
+    // Tab switching
+    document.querySelectorAll('.tab-nav-item').forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab-nav-item').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+        tab.classList.add('active');
+        document.querySelectorAll('.tab-content')[idx].style.display = 'block';
+      });
+    });
+
+    // Telegram back button
+    if (typeof Telegram !== 'undefined' && Telegram.WebApp && Telegram.WebApp.BackButton) {
+      Telegram.WebApp.BackButton.onClick(() => {
+        // Close or navigate back
+        Telegram.WebApp.close();
+      });
+    }
+  </script>
+</body>
+</html>
