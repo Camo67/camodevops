@@ -3,13 +3,21 @@
  *
  * Routes:
  * - /app* - CamoFlow OS dashboard (requires sos_auth cookie)
+ * - /app/inbox - Unified mail inbox UI (requires sos_auth cookie)
+ * - /api/mail/* - Mail API backing the inbox (requires sos_auth cookie)
  * - /bot/app - Telegram Mini App launcher
  * - /webhook/telegram/* - Telegram bot webhook endpoint
  * - /* - Static assets from output/ directory
  *
  * Static assets serve assets-first; this code only runs for requests with no
  * matching asset, plus the zone routes declared in wrangler.jsonc.
+ *
+ * Also exports `email()` — Cloudflare Email Routing invokes this directly
+ * (not via fetch) for any address routed to this Worker. See EMAIL_SETUP.md
+ * for the dashboard-side routing configuration this depends on.
  */
+import { handleInboundEmail, apiListMessages, apiGetMessage, apiSendNew, apiSendReply, apiArchive, apiListDomains, apiAddDomain } from './mail.js';
+import { getInboxHtml } from './mail-ui.js';
 
 // Telegram bot integration
 async function handleTelegramUpdate(update, env) {
@@ -91,9 +99,47 @@ async function sendTelegramMessage(token, chatId, text, markup = null) {
   return new Response('OK', { status: 200 });
 }
 
+function isSignedIn(request) {
+  return /(?:^|;\s*)sos_auth=/.test(request.headers.get("Cookie") || "");
+}
+
 export default {
+  // Cloudflare Email Routing entry point — configured per-address in the
+  // dashboard (Email → Email Routing → Routing rules → Send to a Worker).
+  async email(message, env, ctx) {
+    try {
+      await handleInboundEmail(message, env, ctx);
+    } catch (err) {
+      console.error('Inbound mail handling failed:', err);
+      // Reject so Cloudflare bounces it rather than silently swallowing mail
+      // we failed to store.
+      message.setReject('Temporary processing error');
+    }
+  },
+
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // Mail API: /api/mail/* (requires authentication)
+    if (url.pathname.startsWith('/api/mail/')) {
+      if (!isSignedIn(request)) return new Response('Unauthorized', { status: 401 });
+      try {
+        return await routeMailApi(request, env, url);
+      } catch (err) {
+        console.error('Mail API error:', err);
+        return new Response(JSON.stringify({ error: err.message || 'internal error' }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Inbox UI: /app/inbox (requires authentication) — checked before the
+    // generic /app* SPA passthrough below.
+    if (url.pathname === '/app/inbox') {
+      if (!isSignedIn(request)) return Response.redirect(new URL("/login", url).toString(), 302);
+      return new Response(getInboxHtml(), { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+    }
 
     // Telegram webhook: POST /webhook/telegram/*
     if (request.method === 'POST' && url.pathname.match(/^\/webhook\/telegram\//)) {
@@ -122,8 +168,7 @@ export default {
 
     // CamoFlow OS app: /app* (requires authentication)
     if (url.hostname === "sos.camodevops.online" && (url.pathname === "/app" || url.pathname.startsWith("/app/"))) {
-      const signedIn = /(?:^|;\s*)sos_auth=/.test(request.headers.get("Cookie") || "");
-      if (!signedIn) return Response.redirect(new URL("/login", url).toString(), 302);
+      if (!isSignedIn(request)) return Response.redirect(new URL("/login", url).toString(), 302);
       return env.ASSETS.fetch(new URL("/sos/index.html", url));
     }
 
@@ -131,6 +176,31 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
+
+// Dispatch for /api/mail/* — thin routing layer over mail.js's handlers.
+async function routeMailApi(request, env, url) {
+  const path = url.pathname.slice('/api/mail'.length); // e.g. '/messages/<id>/reply'
+  const parts = path.split('/').filter(Boolean);
+
+  if (request.method === 'GET' && path === '/messages') return apiListMessages(request, env);
+  if (request.method === 'GET' && parts[0] === 'messages' && parts.length === 2) {
+    return apiGetMessage(request, env, parts[1]);
+  }
+  if (request.method === 'POST' && path === '/send') return apiSendNew(request, env);
+  if (request.method === 'POST' && parts[0] === 'messages' && parts[2] === 'reply') {
+    return apiSendReply(request, env, parts[1]);
+  }
+  if (request.method === 'POST' && parts[0] === 'messages' && parts[2] === 'archive') {
+    return apiArchive(request, env, parts[1]);
+  }
+  if (request.method === 'GET' && path === '/domains') return apiListDomains(request, env);
+  if (request.method === 'POST' && path === '/domains') return apiAddDomain(request, env);
+
+  return new Response(JSON.stringify({ error: 'not found' }), {
+    status: 404,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
 
 function getTelegramMiniAppHtml() {
   return `<!DOCTYPE html>

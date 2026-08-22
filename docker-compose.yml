@@ -28,7 +28,10 @@ services:
   # ═══════════════════════════════════════════════════════════════
   harness:
     build:
-      context: ${HARNESS_DIR:-/home/bertha/agentic-harness}
+      # Ships in this repo now (./agentic-harness) — no longer needs a
+      # sibling directory on the host. HARNESS_DIR can still override this
+      # for anyone running an out-of-repo fork of the harness.
+      context: ${HARNESS_DIR:-./agentic-harness}
       dockerfile: Dockerfile
     container_name: camodevops-harness
     restart: unless-stopped
