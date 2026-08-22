@@ -201,6 +201,72 @@ async function sendTelegram(chatId, text) {
   });
 }
 
+// Long-polling — the default, because it needs nothing reachable from the
+// outside. amp-ci only has a private tailnet address; Telegram's webhook
+// mode requires Telegram to reach *us*, which means either exposing this
+// box publicly (Tailscale Funnel, needs Andrew's tailnet admin) or relaying
+// through something public that itself can't reach into a private tailnet
+// either (a Cloudflare Worker can't route to 100.x addresses any more than
+// this dev sandbox can). Polling flips the direction: we call out to
+// Telegram, which needs nothing open on this end at all.
+const TELEGRAM_MODE = process.env.TELEGRAM_MODE || 'poll'; // 'poll' | 'webhook'
+const TELEGRAM_OFFSET_FILE = path.join(MEMORY_DIR, '.telegram-offset');
+let telegramPolling = false;
+
+function loadTelegramOffset() {
+  try {
+    return parseInt(fs.readFileSync(TELEGRAM_OFFSET_FILE, 'utf8'), 10) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+function saveTelegramOffset(offset) {
+  fs.writeFileSync(TELEGRAM_OFFSET_FILE, String(offset));
+}
+
+async function startTelegramPolling() {
+  if (!TELEGRAM_BOT_TOKEN) {
+    console.log('[telegram] TELEGRAM_BOT_TOKEN not set — polling disabled');
+    return;
+  }
+  if (telegramPolling) return;
+  telegramPolling = true;
+
+  // getUpdates and webhooks are mutually exclusive on Telegram's side —
+  // clear any previously-registered webhook so polling actually receives updates.
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/deleteWebhook`);
+  } catch (err) {
+    console.error('[telegram] deleteWebhook failed (continuing anyway):', err.message);
+  }
+
+  console.log('[telegram] long-polling started');
+  let offset = loadTelegramOffset();
+
+  while (telegramPolling) {
+    try {
+      const res = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${offset}&timeout=30`
+      );
+      const data = await res.json();
+      if (!data.ok) {
+        console.error('[telegram] getUpdates error:', data.description);
+        await new Promise(r => setTimeout(r, 5000)); // back off before retrying
+        continue;
+      }
+      for (const update of data.result) {
+        offset = update.update_id + 1;
+        saveTelegramOffset(offset);
+        handleTelegram(update).catch(err => console.error('[telegram] handling error:', err));
+      }
+    } catch (err) {
+      console.error('[telegram] poll request failed:', err.message);
+      await new Promise(r => setTimeout(r, 5000));
+    }
+  }
+}
+
 async function handleTelegram(update) {
   const message = update?.message;
   const chatId = message?.chat?.id;
@@ -285,12 +351,19 @@ server.listen(PORT, () => {
 ║   Agentic Harness — WhatsApp + Telegram  ║
 ╚══════════════════════════════════════════╝
 
-   Port:    ${PORT}
-   Ollama:  ${OLLAMA_URL} (${OLLAMA_MODEL})
-   Memory:  ${MEMORY_DIR}
-   WhatsApp: ${WHATSAPP_PHONE_NUMBER ? 'configured' : 'not configured'}
-   Telegram: ${TELEGRAM_BOT_TOKEN ? 'configured' : 'not configured'}
+   Port:     ${PORT}
+   Ollama:   ${OLLAMA_URL} (${OLLAMA_MODEL})
+   Memory:   ${MEMORY_DIR}
+   WhatsApp: ${WHATSAPP_PHONE_NUMBER ? 'configured (webhook, via /webhook)' : 'not configured'}
+   Telegram: ${TELEGRAM_BOT_TOKEN ? `configured (${TELEGRAM_MODE})` : 'not configured'}
   `);
+
+  if (TELEGRAM_MODE === 'poll') {
+    startTelegramPolling().catch(err => console.error('[telegram] polling crashed:', err));
+  }
 });
+
+process.on('SIGTERM', () => { telegramPolling = false; process.exit(0); });
+process.on('SIGINT', () => { telegramPolling = false; process.exit(0); });
 
 module.exports = server;
