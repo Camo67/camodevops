@@ -14,20 +14,34 @@
   },
   // Path overlay on the Command Center's custom domain: only /app* comes to
   // this worker; sos-camodevops keeps every other path on that hostname.
-  // Also handles Telegram bot webhook and mini app routes.
+  // Also handles Telegram bot webhook/mini app routes and the mail API.
   "routes": [
     { "pattern": "sos.camodevops.online/app*", "zone_name": "camodevops.online" },
     { "pattern": "sos.camodevops.online/bot*", "zone_name": "camodevops.online" },
-    { "pattern": "sos.camodevops.online/webhook*", "zone_name": "camodevops.online" }
+    { "pattern": "sos.camodevops.online/webhook*", "zone_name": "camodevops.online" },
+    { "pattern": "sos.camodevops.online/api/mail*", "zone_name": "camodevops.online" }
   ],
-  // Environment variables for Telegram bot
-  // TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_WEBHOOK_SECRET should be set via wrangler secret
-  "env": {
-    "production": {
-      "vars": {
-        "TELEGRAM_BOT_ACTIVE": "true"
-      }
-    }
+  // Unified mail store — every mailbox on every configured domain (see the
+  // `domains` table) lands here. Inbound rows are written by the `email()`
+  // handler (wired up via Cloudflare Email Routing in the dashboard, not
+  // here — see EMAIL_SETUP.md); outbound rows are written when /api/mail/send
+  // or a reply goes out through Resend.
+  "d1_databases": [
+    { "binding": "MAIL_DB", "database_name": "camodevops-mail", "database_id": "4cf635fe-9b9e-43d3-bad6-78c8ceec1247" }
+  ],
+  // Secrets (set via `wrangler secret put <NAME>`, never committed):
+  //   TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_WEBHOOK_SECRET — Telegram bot
+  //   RESEND_API_KEY   — outbound send (api.resend.com)
+  //   ANTHROPIC_API_KEY — Kyra's draft-reply generation; drafting is skipped
+  //                       silently if unset, mail still arrives fine
+  //
+  // NOTE: `npm run deploy` runs plain `wrangler deploy` (no --env flag), so
+  // vars belong at this top level, not under a named "env" block — a named
+  // block is only applied when you explicitly deploy with --env <name>.
+  "vars": {
+    "TELEGRAM_BOT_ACTIVE": "true"
+    // "MAIL_FORWARD_TO": "you@example.com" — optional: also forward every
+    // inbound message to a personal address while the inbox UI is new.
   },
   "observability": {
     "enabled": false,

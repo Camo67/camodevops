@@ -8,6 +8,9 @@
     "dev": "wrangler dev",
     "deploy": "npm run build && wrangler deploy"
   },
+  "dependencies": {
+    "postal-mime": "^2.3.2"
+  },
   "devDependencies": {
     "wrangler": "^4.95.0"
   }
