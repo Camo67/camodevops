@@ -10,6 +10,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 const HARNESS_URL = process.env.HARNESS_URL || 'http://localhost:8080/webhook';
+const TELEGRAM_HARNESS_URL = process.env.TELEGRAM_HARNESS_URL || HARNESS_URL.replace(/\/webhook$/, '/telegram/webhook');
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'agentic-harness-verify';
 
 // MIME types
@@ -104,26 +105,29 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // Telegram webhook (POST)
+    // Telegram webhook (POST) — forwarded to the harness, same as WhatsApp below.
+    // (Previously tried to require() a .py file, which can't work in Node and
+    // doesn't exist in this repo — updates were being acknowledged and dropped
+    // without ever reaching the harness or an LLM. Fixed to actually forward.)
     if (url.pathname === '/telegram/webhook' && req.method === 'POST') {
       let body = '';
       req.on('data', chunk => body += chunk);
       req.on('end', async () => {
         try {
-          console.log('[Telegram] Received update, processing...');
-          
-          const update = JSON.parse(body);
-          const { getBridge } = require('./integrations/telegram/bridge.py');
-          // This would need to be called via Python subprocess or HTTP
-          // For now, log and acknowledge
-          console.log('[Telegram] Update received:', JSON.stringify(update).substring(0, 200));
-          
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ ok: true }));
+          console.log('[Telegram] Received update, forwarding to harness...');
+
+          const harnessResp = await fetch(TELEGRAM_HARNESS_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: body,
+          });
+          const result = await harnessResp.text();
+          res.writeHead(200, { 'Content-Type': 'application/json' }); // always 200 to Telegram
+          res.end(result || JSON.stringify({ ok: true }));
         } catch (e) {
-          console.error('[Telegram] Error:', e.message);
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ ok: true })); // Always return 200 to Telegram
+          console.error('[Telegram] Harness error:', e.message);
+          res.writeHead(200, { 'Content-Type': 'application/json' }); // always 200 to Telegram
+          res.end(JSON.stringify({ ok: true }));
         }
       });
       return;

@@ -1,0 +1,10 @@
+{
+  "name": "agentic-harness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WhatsApp + Telegram AI backend for camodevops — routes messages through Ollama, falls back to cloud providers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
